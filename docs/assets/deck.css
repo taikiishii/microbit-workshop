@@ -1,0 +1,332 @@
+/* =========================================================================
+   deck.css  --  micro:bit ワークショップ 共有スタイル
+   1つのソース（各章HTMLに埋め込んだMarkdown）を
+   ・Webページ（スクロール閲覧）
+   ・発表モード（1枚ずつ全画面）
+   ・印刷 / PDF（1スライド1ページ）
+   の3つで使い回すためのCSS。
+   スライド内部の寸法はすべて cqw / cqh（コンテナ相対単位）で指定するので、
+   カードでも全画面でも印刷でも同じ見た目で拡大縮小されます。
+   ========================================================================= */
+
+:root {
+  --accent:      #00a99d;   /* micro:bit 風ティール */
+  --accent-dark: #007c74;
+  --ink:         #1f2a2e;   /* 本文の色 */
+  --muted:       #5b6b70;
+  --line:        #d8e0e2;
+  --hint-bg:     #eafaf8;
+  --warn-bg:     #fff4e0;
+  --warn-line:   #e9a83a;
+  --page-bg:     #eef2f3;
+  --font: "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", Meiryo,
+          "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--page-bg);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---- 上部ツールバー（Web閲覧時のみ表示） -------------------------------- */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 6px rgba(0,0,0,.05);
+}
+.toolbar .home { text-decoration: none; color: var(--accent-dark); font-weight: 700; }
+.toolbar .home:hover { text-decoration: underline; }
+.toolbar .title { font-weight: 700; font-size: 15px; }
+.toolbar .spacer { flex: 1; }
+.toolbar button {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.toolbar button.ghost { background: #fff; color: var(--accent-dark); border: 1.5px solid var(--accent); }
+.toolbar button:hover { filter: brightness(1.05); }
+
+/* ---- スライドを並べる領域 ---------------------------------------------- */
+.deck {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+.deck-hint { text-align: center; color: var(--muted); font-size: 13px; margin: 0 0 22px; }
+
+/* ---- スライド1枚（すべてのモード共通の器） ------------------------------ */
+.slide {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.10);
+  overflow: hidden;
+  margin: 0 auto 26px;
+  container-type: size;          /* 内部の cqw/cqh の基準になる */
+}
+.slide .page-no {
+  position: absolute;
+  right: 2.6cqw; bottom: 1.8cqh;
+  font-size: 2cqh;
+  color: var(--muted);
+}
+
+/* スライド内部。ここから下の寸法はすべて cqw / cqh / em で指定する */
+.slide-inner {
+  width: 100%;
+  height: 100%;
+  padding: 4.5cqh 5cqw;
+  font-size: 3.0cqh;           /* 本文基準サイズ。これに対する em で全体が決まる */
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* スライド見出し：上部の細いヘッダーとしてコンパクトに（左ペインで場所を取らない） */
+.slide-inner > h1 {
+  font-size: 1.5em;
+  line-height: 1.15;
+  margin: 0 0 .5em;
+  color: var(--accent-dark);
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+.slide-inner h2 {
+  font-size: 1.35em;
+  margin: 0 0 .5em;
+  color: var(--ink);
+  font-weight: 800;
+}
+.slide-inner h3 { font-size: 1.1em; margin: .2em 0 .4em; color: var(--accent-dark); }
+.slide-inner p { margin: 0 0 .55em; }
+.slide-inner strong { color: var(--accent-dark); }
+.slide-inner a { color: var(--accent-dark); }
+.slide-inner code {
+  font-family: "Consolas", "Courier New", monospace;
+  background: #f0f3f4;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: .05em .4em;
+  font-size: .92em;
+}
+
+/* リスト（手順） */
+.slide-inner ol, .slide-inner ul { margin: 0 0 .6em; padding-left: 0; list-style: none; }
+.slide-inner ol { counter-reset: step; }
+.slide-inner ol > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 1.9em;
+  margin: 0 0 .55em;
+}
+.slide-inner ol > li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: .05em;
+  width: 1.35em; height: 1.35em;
+  background: var(--accent); color: #fff;
+  border-radius: 50%;
+  font-size: .8em; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.slide-inner ul > li { position: relative; padding-left: 1.2em; margin: 0 0 .35em; }
+.slide-inner ul > li::before {
+  content: ""; position: absolute; left: .1em; top: .62em;
+  width: .5em; height: .5em; background: var(--accent); border-radius: 50%;
+}
+
+/* 図（スクリーンショット）：この資料の主役。できるだけ大きく見せる */
+.slide-inner figure { margin: 0; text-align: center; min-height: 0; }
+.slide-inner figure img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  object-fit: contain;
+}
+.slide-inner figcaption { margin-top: .3em; font-size: .78em; color: var(--muted); flex: 0 0 auto; }
+.figrow { display: flex; gap: 3cqw; align-items: center; justify-content: center; height: 100%; }
+.figrow figure { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; }
+
+/* 吹き出し（博士のヒント）：小さめ・コンパクトに。枠からはみ出さない */
+.callout {
+  display: flex; align-items: flex-start; gap: 1.6cqw;
+  background: var(--hint-bg);
+  border: 1.5px solid var(--accent);
+  border-radius: 10px;
+  padding: 1.6cqh 2.2cqw;
+  margin: .4em 0 0;
+  font-size: .8em;
+  line-height: 1.4;
+}
+.callout.warn { background: var(--warn-bg); border-color: var(--warn-line); }
+.callout.challenge { background: #eef6ff; border-color: #5aa9e6; }
+.callout .hakase { flex: 0 0 auto; width: 7cqw; height: auto; align-self: flex-start; }
+.callout .callout-body { flex: 1; min-width: 0; }
+.callout .callout-body p { margin: 0; }
+
+/* 2カラム。画像側（col-media）を大きく取り、手順テキスト側は控えめに */
+.cols { flex: 1; display: flex; gap: 3.5cqw; align-items: stretch; min-height: 0; }
+.cols .col { flex: 1 1 0; min-width: 0; min-height: 0;
+             display: flex; flex-direction: column; justify-content: center; }
+.cols .col.col-media { flex: 1.9 1 0; }        /* スクリーンショットを大きく */
+.cols .col.col-media figure { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+.cols .col.col-media img { max-height: 100%; }
+.cols .col.center { justify-content: center; align-items: center; }
+
+/* タイトルスライド（本文だけで画像が無いとき中央寄せしたい場合に使う） */
+.slide-inner.cover { align-items: center; justify-content: center; text-align: center; }
+.slide-inner.cover h1 { font-size: 2.6em; color: var(--accent-dark); }
+.slide-inner.cover .sub { font-size: 1.2em; color: var(--muted); }
+
+/* =========================================================================
+   発表モード：1枚ずつ全画面で表示
+   ========================================================================= */
+body.mode-present { background: #0d1416; overflow: hidden; }
+body.mode-present .toolbar { display: none; }
+body.mode-present .deck { max-width: none; margin: 0; padding: 0; }
+body.mode-present .deck-hint { display: none; }
+body.mode-present .slide {
+  display: none;
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(100vw, 177.78vh);   /* 16:9 を画面いっぱいに */
+  margin: 0; border-radius: 0; box-shadow: none;
+}
+body.mode-present .slide.active { display: block; }
+
+.present-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 60;
+  align-items: center; justify-content: center; gap: 18px;
+  padding: 10px;
+  background: rgba(13,20,22,.65);
+  color: #fff;
+}
+body.mode-present .present-bar { display: flex; }
+.present-bar button {
+  font-family: inherit; font-size: 15px; font-weight: 700;
+  color: #fff; background: rgba(255,255,255,.15);
+  border: none; border-radius: 8px; padding: 8px 14px; cursor: pointer;
+}
+.present-bar button:hover { background: rgba(255,255,255,.28); }
+.present-bar .counter { font-variant-numeric: tabular-nums; min-width: 60px; text-align: center; }
+
+/* =========================================================================
+   印刷 / PDF：1スライド＝1ページ（PowerPoint不要でスライド形式の配布資料に）
+   ========================================================================= */
+@media print {
+  @page { size: A4 landscape; margin: 8mm; }
+  html, body { background: #fff; }
+  .toolbar, .present-bar, .deck-hint { display: none !important; }
+  .deck { max-width: none; margin: 0; padding: 0; }
+  .slide {
+    display: block !important;
+    width: 100%;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    box-shadow: none;
+    break-inside: avoid;
+    break-after: page;
+    background: #fff;
+  }
+  .slide:last-child { break-after: auto; }
+  /* 印刷では発表モードのfixed配置を打ち消す */
+  body.mode-present .slide { position: static; transform: none; top: auto; left: auto; }
+  body.mode-present .slide { display: block !important; }
+}
+
+/* =========================================================================
+   小学生向けの装飾（画面表示だけ／印刷・PDFには出ません）
+   ここは @media screen の中だけなので、印刷時は一切適用されません。
+   ========================================================================= */
+@media screen {
+
+  /* 水玉のやさしい背景（Web閲覧時）。発表モードは暗い背景のままにする */
+  body:not(.mode-present) {
+    background-color: #eef8f7;
+    background-image:
+      radial-gradient(rgba(0,169,157,.10) 2px, transparent 2px),
+      radial-gradient(rgba(255,159,120,.10) 2px, transparent 2px);
+    background-size: 30px 30px, 30px 30px;
+    background-position: 0 0, 15px 15px;
+  }
+
+  /* 上部の虹ライン（ツールバーの下に細く） */
+  .toolbar { border-bottom: none; }
+  .toolbar::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 5px;
+    background: linear-gradient(90deg,#ff9eb1,#ffd98a,#a0e2a0,#9fd8f0,#c9b3e8);
+  }
+
+  /* ヒントは吹き出し風の丸いバッジに */
+  .deck-hint {
+    width: fit-content; max-width: 90%;
+    margin: 6px auto 24px;
+    background: #fff;
+    border: 2px dashed var(--accent);
+    border-radius: 999px;
+    padding: 8px 20px;
+    color: var(--accent-dark);
+  }
+
+  /* カードを色画用紙風に：丸い角＋スライドごとに変わるカラフルな枠 */
+  body:not(.mode-present) .slide {
+    border-radius: 22px;
+    box-shadow: 0 10px 26px rgba(60,90,90,.14),
+                inset 0 0 0 5px var(--frame, #cfeeeb);
+  }
+  body:not(.mode-present) .slide:nth-of-type(6n+1) { --frame: #ffb3c1; }
+  body:not(.mode-present) .slide:nth-of-type(6n+2) { --frame: #ffd98a; }
+  body:not(.mode-present) .slide:nth-of-type(6n+3) { --frame: #a7e3a7; }
+  body:not(.mode-present) .slide:nth-of-type(6n+4) { --frame: #9fd8f0; }
+  body:not(.mode-present) .slide:nth-of-type(6n+5) { --frame: #c9b3e8; }
+  body:not(.mode-present) .slide:nth-of-type(6n+6) { --frame: #ffc09f; }
+
+  /* スライド見出しに鉛筆マーク（表紙は除く） */
+  .slide-inner:not(.cover) > h1 { display: flex; align-items: center; gap: .35em; }
+  .slide-inner:not(.cover) > h1::before {
+    content: "✏️"; font-size: .8em; flex: 0 0 auto;
+  }
+
+  /* ページ番号を丸いバッジに */
+  .slide .page-no {
+    width: 5cqh; height: 5cqh;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--frame, var(--accent));
+    color: #333; font-weight: 800;
+    border-radius: 50%;
+    right: 2.6cqw; bottom: 2.4cqh;
+    box-shadow: 0 1px 3px rgba(0,0,0,.15);
+  }
+
+  /* 表紙スライドはワクワク感を少し（やわらかい色の背景） */
+  body:not(.mode-present) .slide-inner.cover {
+    background:
+      radial-gradient(circle at 20% 20%, #fff6d6 0, transparent 40%),
+      radial-gradient(circle at 80% 75%, #e2f6ff 0, transparent 45%);
+  }
+}

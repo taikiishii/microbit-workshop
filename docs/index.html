@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>micro:bit 体験ワークショップ — もくじ</title>
+<style>
+  :root{ --accent:#00a99d; --accent-dark:#007c74; --ink:#1f2a2e; --muted:#5b6b70; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,"Segoe UI",system-ui,sans-serif;
+    color:var(--ink);
+    background-color:#eef8f7;
+    background-image:
+      radial-gradient(rgba(0,169,157,.10) 2px, transparent 2px),
+      radial-gradient(rgba(255,159,120,.10) 2px, transparent 2px);
+    background-size:30px 30px, 30px 30px;
+    background-position:0 0, 15px 15px;
+  }
+
+  header{
+    position:relative;
+    background:linear-gradient(135deg,#00b5a8,#007c74);
+    color:#fff; padding:46px 20px 42px; text-align:center;
+    border-bottom-left-radius:26px; border-bottom-right-radius:26px;
+  }
+  header h1{ margin:0 0 10px; font-size:32px; letter-spacing:.02em; }
+  header p{ margin:0; opacity:.92; font-size:15px; }
+  header::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:6px;
+    border-bottom-left-radius:26px; border-bottom-right-radius:26px;
+    background:linear-gradient(90deg,#ff9eb1,#ffd98a,#a0e2a0,#9fd8f0,#c9b3e8);
+  }
+
+  main{ max-width:940px; margin:0 auto; padding:30px 18px 70px; }
+
+  /* セクションの見出し */
+  .section{ margin-top:14px; }
+  .section + .section{ margin-top:40px; }
+  .section-head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:0 4px 18px; }
+  .section-head .stitle{ font-size:22px; font-weight:800; }
+  .section-head .ssub{ font-size:13.5px; color:var(--muted); }
+  .section-line{ height:4px; border-radius:999px; margin:0 4px 20px; }
+  .s-basic .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0,#c9b3e8); }
+  .s-robot .section-line{ background:linear-gradient(90deg,#a7e3a7,#ffcf5c,#ff8a80); }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
+
+  .card{
+    display:block; text-decoration:none; color:inherit;
+    background:#fff; border-radius:22px; padding:22px 22px 24px;
+    box-shadow:0 10px 26px rgba(60,90,90,.14), inset 0 0 0 5px var(--frame,#cfeeeb);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(60,90,90,.20), inset 0 0 0 5px var(--frame,#cfeeeb); }
+
+  .face{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .num{
+    display:inline-flex; width:42px; height:42px; border-radius:50%;
+    background:var(--frame,#cfeeeb); color:#333; font-weight:800; font-size:19px;
+    align-items:center; justify-content:center; box-shadow:0 1px 3px rgba(0,0,0,.15);
+  }
+  .emoji{ font-size:40px; line-height:1; }
+  .card h2{ font-size:19px; margin:0 0 8px; }
+  .card p{ font-size:13.5px; color:var(--muted); margin:0; line-height:1.6; }
+
+  /* 難易度ラベル（ロボットカー編） */
+  .level{ display:inline-block; font-size:12px; font-weight:800; color:#fff;
+          border-radius:999px; padding:3px 12px; margin-bottom:12px; }
+
+  .c1{ --frame:#ffb3c1; } .c2{ --frame:#ffd98a; } .c3{ --frame:#a7e3a7; }
+  .c4{ --frame:#9fd8f0; } .c5{ --frame:#c9b3e8; }
+  .r1{ --frame:#a7e3a7; } .r2{ --frame:#ffcf5c; } .r3{ --frame:#ff8a80; }
+  .r1 .level{ background:#5bb85b; } .r2 .level{ background:#e0a324; } .r3 .level{ background:#e5645a; }
+
+  /* ライセンス / 使用許諾 */
+  .license{ margin:44px 4px 0; padding:22px 24px; background:#fff; border-radius:18px;
+            box-shadow:0 6px 18px rgba(60,90,90,.10); font-size:13.5px; line-height:1.75; color:#3a4a4e; }
+  .license h2{ font-size:17px; margin:0 0 12px; }
+  .license p{ margin:0 0 10px; }
+  .license .thirdparty{ color:var(--muted); font-size:12.5px; }
+  .license .copy{ margin:12px 0 0; font-size:12.5px; color:var(--muted); }
+  .license a{ color:var(--accent-dark); }
+  .license strong{ color:var(--accent-dark); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🤖 マイクロビット 体験ワークショップ</h1>
+  <p>micro:bit と ロボットカーで、たのしくプログラミング</p>
+</header>
+
+<main>
+
+  <!-- ============ マイクロビット編 ============ -->
+  <section class="section s-basic">
+    <div class="section-head">
+      <span class="stitle">🔰 マイクロビット編</span>
+      <span class="ssub">はじめてのプログラミング</span>
+    </div>
+    <div class="section-line"></div>
+
+    <div class="grid">
+      <a class="card c1" href="01_紹介と使い方.html">
+        <div class="face"><span class="num">1</span><span class="emoji">🔰</span></div>
+        <h2>マイクロビットの紹介と使い方</h2>
+        <p>micro:bitって何？ メイクコードを開いて、接続して、はじめてのプログラムを書きこもう。</p>
+      </a>
+
+      <a class="card c2" href="02_アニメーション.html">
+        <div class="face"><span class="num">2</span><span class="emoji">🎬</span></div>
+        <h2>アニメーションをつくろう</h2>
+        <p>少しずつ違う絵を順番に表示して、LEDで動くアニメーションを作ろう。</p>
+      </a>
+
+      <a class="card c3" href="03_ボタン.html">
+        <div class="face"><span class="num">3</span><span class="emoji">🔘</span></div>
+        <h2>ボタンで表示を変えよう</h2>
+        <p>A・Bボタンを使って、LEDの表示や動きを変えてみよう。</p>
+      </a>
+
+      <a class="card c4" href="04_振動センサとメロディー.html">
+        <div class="face"><span class="num">4</span><span class="emoji">🔔</span></div>
+        <h2>揺すって音を鳴らそう</h2>
+        <p>スピーカーと加速度センサーを使って、揺らすと音が鳴るようにしよう。</p>
+      </a>
+
+      <a class="card c5" href="05_フルカラーLED.html">
+        <div class="face"><span class="num">5</span><span class="emoji">🌈</span></div>
+        <h2>フルカラーLEDを使おう</h2>
+        <p>NeoPixel を接続して、いろいろな色やレインボーを光らせよう。</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ロボットカー編 ============ -->
+  <section class="section s-robot">
+    <div class="section-head">
+      <span class="stitle">🚗 ロボットカー編（micro:Maqueen）</span>
+      <span class="ssub">虎の巻 ／ マイクロビット編のあとにチャレンジ</span>
+    </div>
+    <div class="section-line"></div>
+
+    <div class="grid">
+      <a class="card r1" href="mq1_基本走行.html">
+        <div class="face"><span class="num">①</span><span class="emoji">🚗</span></div>
+        <span class="level">入門編</span>
+        <h2>基本走行</h2>
+        <p>ロボットカーを組み立てて、前後・右折・左折。三角形や円を描いて自由に走らせよう。</p>
+      </a>
+
+      <a class="card r2" href="mq2_センサー.html">
+        <div class="face"><span class="num">②</span><span class="emoji">🎤</span></div>
+        <span class="level">中級編</span>
+        <h2>センサーで動かそう</h2>
+        <p>マイク（拍手）で操縦したり、超音波センサーでぶつかる前に自動で曲がろう。</p>
+      </a>
+
+      <a class="card r3" href="mq3_ライントレーサー.html">
+        <div class="face"><span class="num">③</span><span class="emoji">🛣️</span></div>
+        <span class="level">上級編</span>
+        <h2>ライントレーサー</h2>
+        <p>床の線をセンサーで見分けて、自動で線をたどって走るロボットを作ろう。</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ ライセンス / 使用許諾 ============ -->
+  <footer class="license">
+    <h2>📄 ライセンス / 使用許諾</h2>
+    <p>この教材の<strong>文章・レイアウト・プログラム（HTML / CSS / JavaScript）</strong>は
+       <strong>MIT ライセンス</strong>で公開しているオープンソースです。
+       だれでも<strong>自由に利用・改変・再配布</strong>できます（授業・イベント・商用利用もOK）。
+       ご利用の際は、下のコピーライトとライセンス表示を残してください。</p>
+    <p><strong>無保証・免責：</strong>本教材は現状のまま（AS IS）提供されます。
+       作成者は、本教材の利用によって生じたいかなる損害についても<strong>一切の責任を負いません</strong>。</p>
+    <p class="thirdparty">※ 画面キャプチャ（Microsoft MakeCode など）、イラスト、写真といった<strong>第三者が権利を持つ素材</strong>は、
+       それぞれの提供元の利用規約に従います。これらは MIT ライセンスの対象外です。再配布の際はご確認のうえ、必要に応じて差し替えてください。</p>
+    <p class="copy">Copyright © 2026 Taiki Ishii — Released under the MIT License（全文は <a href="LICENSE.txt">LICENSE.txt</a> をご覧ください）</p>
+  </footer>
+
+</main>
+</body>
+</html>

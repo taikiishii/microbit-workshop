@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>② アニメーションをつくろう — micro:bitワークショップ</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+
+<div class="toolbar">
+  <a class="home" href="index.html">← もくじ</a>
+  <span class="title">② アニメーションをつくろう</span>
+  <span class="spacer"></span>
+  <button id="btn-present">▶ 発表モード</button>
+  <button class="ghost" id="btn-print">印刷 / PDF</button>
+</div>
+
+<div class="deck" id="deck">
+  <p class="deck-hint">スクロールで読めます。「発表モード」で1枚ずつ全画面表示、「印刷 / PDF」でスライド形式の配布資料になります。</p>
+</div>
+
+<!-- ===== 唯一のソース：この Markdown を編集すれば3モードすべてに反映されます ===== -->
+<script type="text/markdown" id="deck-source">
+{cover}
+# ② アニメーションをつくろう
+
+LED画面で絵を動かそう
+
+*micro:bit 体験ワークショップ*
+
+---
+
+# なにをするの？
+
+:::
+
+**少しずつ形や場所のちがう絵**を、順番にパッパッと表示すると、動いて見えるよ。パラパラまんがと同じしくみだね。
+
+micro:bit の **LED画面（25個のライト）** でも、同じようにアニメーションを作れるんだ。
+
+まずは点が下に落ちていくアニメーションを作ってみよう！
+
+:::
+
+![点が少しずつ下に動くと、動いて見えるよ](assets/img/ch02/s02_03.png)
+![](assets/img/ch02/s02_05.png)
+![](assets/img/ch02/s02_07.png)
+
+---
+
+# ブロックを置こう
+
+:::
+
+1. 「**基本**」のメニューをクリック
+2. 「**LED画面に表示**」ブロックを「**ずっと**」の中にドラッグ
+
+> 「最初だけ」と「ずっと」のブロックは、はじめから置いてあるよ。いらないブロックは、画面の外にドラッグすると消せるよ。
+
+:::
+
+![「基本」メニューの中の「LED画面に表示」ブロック](assets/img/ch02/s03_10.png)
+
+---
+
+# 1まい目の絵をかこう
+
+:::
+
+1. LED画面の **小さな四角をクリック**して絵をかく（もう一度クリックで消える）
+2. 「LED画面に表示」ブロックを**右クリック**して「**複製する**」をえらぶ
+3. 複製したブロックを、1つ目のブロックの下にドラッグ
+
+:::
+
+![四角をクリックして絵をかく](assets/img/ch02/s04_14.png)
+![右クリック →「複製する」](assets/img/ch02/s04_13.png)
+
+---
+
+# 2まい目をかいて動かそう
+
+:::
+
+1. 2つ目のブロックの絵を、少しずらして**かき替える**
+2. むらさきの「**ダウンロード**」で micro:bit に書きこむ
+
+> うまく動いたかな？ 3まい目・4まい目とふやすと、もっとなめらかに動くよ。
+
+:::
+
+![2まい目は絵を少しずらす](assets/img/ch02/s05_18.png)
+![micro:bit で動いた！](assets/img/ch02/s05_21.png)
+</script>
+
+<script src="assets/deck.js"></script>
+</body>
+</html>
