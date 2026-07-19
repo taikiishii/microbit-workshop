@@ -1,29 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>① マイクロビットの紹介と使い方 — micro:bitワークショップ</title>
-<link rel="stylesheet" href="assets/deck.css">
-</head>
-<body>
+---
+id: 01
+slug: intro
+section: 基礎編
+emoji: 🔰
+num: 1
+color: c1
+nav_title: ① マイクロビットの紹介と使い方
+card_title: マイクロビットの紹介と使い方
+desc: micro:bitって何？ メイクコードを開いて、接続して、はじめてのプログラムを書きこもう。
+---
 
-<div class="toolbar">
-  <a class="home" href="index.html">← もくじ</a>
-  <span class="title">① マイクロビットの紹介と使い方</span>
-  <span class="spacer"></span>
-  <button id="btn-present">▶ 発表モード</button>
-  <button class="ghost" id="btn-print">印刷 / PDF</button>
-</div>
-
-<div class="deck" id="deck">
-  <p class="deck-hint">スクロールで読めます。「発表モード」で1枚ずつ全画面表示、「印刷 / PDF」でスライド形式の配布資料になります。</p>
-</div>
-
-<!-- このファイルは build.py が content/ の Markdown から自動生成します。直接編集しないでください。 -->
-<script type="text/markdown" id="deck-source">
 {cover}
-{qr: assets/img/qr/01.svg}
 # ① マイクロビットの紹介と使い方
 
 はじめてのプログラミング
@@ -148,8 +135,3 @@ USBケーブルで、マイクロビットとパソコンをつなぐよ。
 :::
 
 ![ダウンロードすると、マイクロビットにハートが表示される](assets/img/ch01/s08_19.png)
-</script>
-
-<script src="assets/deck.js"></script>
-</body>
-</html>

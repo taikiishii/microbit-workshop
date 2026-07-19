@@ -1,29 +1,17 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>🚗 入門編：基本走行 — ロボットカー虎の巻</title>
-<link rel="stylesheet" href="assets/deck.css">
-</head>
-<body>
+---
+id: mq1
+slug: drive
+section: ロボットカー編
+emoji: 🚗
+num: ①
+color: r1
+level: 入門編
+nav_title: 🚗 入門編：基本走行
+card_title: 基本走行
+desc: ロボットカーを組み立てて、前後・右折・左折。三角形や円を描いて自由に走らせよう。
+---
 
-<div class="toolbar">
-  <a class="home" href="index.html">← もくじ</a>
-  <span class="title">🚗 入門編：基本走行</span>
-  <span class="spacer"></span>
-  <button id="btn-present">▶ 発表モード</button>
-  <button class="ghost" id="btn-print">印刷 / PDF</button>
-</div>
-
-<div class="deck" id="deck">
-  <p class="deck-hint">スクロールで読めます。「発表モード」で1枚ずつ全画面表示、「印刷 / PDF」でスライド形式の配布資料になります。</p>
-</div>
-
-<!-- このファイルは build.py が content/ の Markdown から自動生成します。直接編集しないでください。 -->
-<script type="text/markdown" id="deck-source">
 {cover}
-{qr: assets/img/qr/mq1.svg}
 # 🚗 入門編：基本走行
 
 ロボットカー虎の巻 その①
@@ -239,8 +227,3 @@
 :::
 
 ![進む＋曲がるで形を描く](assets/img/mq1/s20_63.png)
-</script>
-
-<script src="assets/deck.js"></script>
-</body>
-</html>

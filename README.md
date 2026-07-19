@@ -8,15 +8,19 @@
 
 もくじページから各章を開けます。
 
-## この教材について
-
-- 1つのソース（各 HTML に埋め込んだ Markdown）から、**Web ページ / 発表スライド / 印刷用 PDF** の3通りに使えます。
+- 1つのソース（Markdown）から、**Web ページ / 発表スライド / 印刷用 PDF** の3通りに使えます。
   - 各ページ上部の「▶ 発表モード」で全画面プレゼン、「印刷 / PDF」でスライド形式の配布資料になります。
-- 依存ライブラリもビルドも不要の静的サイトです。`docs/` 配下を編集して push すると、GitHub Pages に自動で反映されます。
+
+## 新しい資料を作るには
+
+`content/` に Markdown を書いて `python build.py` を実行するだけで、HTML・QRコード・もくじが自動生成されます。
+くわしい手順は **[AUTHORING.md](AUTHORING.md)** を参照してください（ひな形は `content/_template.md`）。
 
 ## リポジトリ構成（概要）
 
-- `docs/` … GitHub Pages で公開している教材一式（編集するのはここ）
+- `content/` … 各章の **Markdown（編集するのはここ）** と画面キャプチャ
+- `templates/`, `build.py` … 変換のしくみ
+- `docs/` … `build.py` が生成する公開ファイル（GitHub Pages 配信元。直接編集しない）
 - `archive/` … 元の PowerPoint など（`.gitignore` で除外・**非公開**）
 
 ## ライセンス
