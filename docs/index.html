@@ -83,6 +83,16 @@
   .license .copy{ margin:12px 0 0; font-size:12.5px; color:var(--muted); }
   .license a{ color:var(--accent-dark); }
   .license strong{ color:var(--accent-dark); }
+
+  /* QRコード（このページを端末で開く） */
+  .qr{ display:flex; align-items:center; gap:20px; justify-content:center; flex-wrap:wrap;
+       background:#fff; border-radius:20px; padding:18px 26px; margin:26px auto 6px; max-width:540px;
+       box-shadow:0 8px 22px rgba(60,90,90,.12), inset 0 0 0 4px #9fd8f0; }
+  .qr img{ width:132px; height:132px; display:block; }
+  .qr .qr-text{ text-align:left; }
+  .qr .qr-text .t{ font-weight:800; font-size:16px; margin:0 0 6px; }
+  .qr .qr-text .d{ font-size:13px; color:var(--muted); margin:0 0 6px; }
+  .qr .qr-text .u{ font-size:12px; color:var(--muted); word-break:break-all; }
 </style>
 </head>
 <body>
@@ -92,6 +102,16 @@
 </header>
 
 <main>
+
+  <!-- ============ QRコード ============ -->
+  <div class="qr">
+    <img src="assets/img/qr.svg" alt="このページのQRコード" width="132" height="132">
+    <div class="qr-text">
+      <p class="t">📱 スマホ・タブレットで開く</p>
+      <p class="d">カメラでQRコードを読みとってね</p>
+      <p class="u">https://taikiishii.github.io/microbit-workshop/index.html</p>
+    </div>
+  </div>
 
   <!-- ============ マイクロビット編 ============ -->
   <section class="section s-basic">
