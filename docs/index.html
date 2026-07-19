@@ -42,7 +42,8 @@
   .section-head .stitle{ font-size:22px; font-weight:800; }
   .section-head .ssub{ font-size:13.5px; color:var(--muted); }
   .section-line{ height:4px; border-radius:999px; margin:0 4px 20px; }
-  .s-basic .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0,#c9b3e8); }
+  .s-basic .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0); }
+  .s-ext .section-line{ background:linear-gradient(90deg,#c9b3e8,#b39ddb); }
   .s-robot .section-line{ background:linear-gradient(90deg,#a7e3a7,#ffcf5c,#ff8a80); }
 
   .grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
@@ -103,11 +104,11 @@
 
 <main>
 
-  <!-- ============ マイクロビット編 ============ -->
+  <!-- ============ 基礎編 ============ -->
   <section class="section s-basic">
     <div class="section-head">
-      <span class="stitle">🔰 マイクロビット編</span>
-      <span class="ssub">はじめてのプログラミング</span>
+      <span class="stitle">🔰 基礎編</span>
+      <span class="ssub">micro:bit だけでできる（外部デバイスなし）</span>
     </div>
     <div class="section-line"></div>
 
@@ -135,11 +136,22 @@
         <h2>揺すって音を鳴らそう</h2>
         <p>スピーカーと加速度センサーを使って、揺らすと音が鳴るようにしよう。</p>
       </a>
+    </div>
+  </section>
 
+  <!-- ============ 拡張編 ============ -->
+  <section class="section s-ext">
+    <div class="section-head">
+      <span class="stitle">🔌 拡張編</span>
+      <span class="ssub">外部デバイスをつないで広げよう</span>
+    </div>
+    <div class="section-line"></div>
+
+    <div class="grid">
       <a class="card c5" href="05_neopixel.html">
         <div class="face"><span class="num">5</span><span class="emoji">🌈</span></div>
         <h2>フルカラーLEDを使おう</h2>
-        <p>NeoPixel を接続して、いろいろな色やレインボーを光らせよう。</p>
+        <p>NeoPixel を接続して、いろいろな色やレインボーを光らせよう。作品づくりにも挑戦。</p>
       </a>
     </div>
   </section>
@@ -148,7 +160,7 @@
   <section class="section s-robot">
     <div class="section-head">
       <span class="stitle">🚗 ロボットカー編（micro:Maqueen）</span>
-      <span class="ssub">虎の巻 ／ マイクロビット編のあとにチャレンジ</span>
+      <span class="ssub">虎の巻 ／ 基礎編・拡張編のあとにチャレンジ</span>
     </div>
     <div class="section-line"></div>
 
