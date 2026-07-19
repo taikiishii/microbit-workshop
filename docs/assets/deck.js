@@ -134,6 +134,10 @@
     var cover = false;
     md = md.replace(/^\s*\{cover\}\s*$/m, function () { cover = true; return ""; });
 
+    // {qr: パス} … スライド右下にQRコードと説明を表示（主に表紙で使う）
+    var qr = null;
+    md = md.replace(/\{qr:\s*([^}]+)\}/, function (_, p) { qr = p.trim(); return ""; });
+
     // 画像だけで構成されたチャンクか（＝大きく見せるメディアカラム）
     function isMediaChunk(c) {
       var ls = c.replace(/\r/g, "").split("\n").filter(function (l) { return l.trim() !== ""; });
@@ -156,9 +160,11 @@
     }
 
     var slide = document.createElement("section");
-    slide.className = "slide";
+    slide.className = "slide" + (qr ? " has-qr" : "");
     slide.innerHTML =
       '<div class="slide-inner' + (cover ? " cover" : "") + '">' + inner + "</div>" +
+      (qr ? '<div class="slide-qr"><img src="' + qr + '" alt="QRコード">' +
+            '<span class="cap">この資料はこちらから<br>ダウンロードできます</span></div>' : "") +
       '<div class="page-no">' + (index + 1) + "</div>";
     return slide;
   }

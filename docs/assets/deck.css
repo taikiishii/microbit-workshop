@@ -195,6 +195,30 @@ html, body {
 .cols .col.col-media img { max-height: 100%; }
 .cols .col.center { justify-content: center; align-items: center; }
 
+/* 表紙などの右下に置くQRコード＋説明 */
+.slide-qr {
+  position: absolute;
+  right: 3.5cqw; bottom: 3cqh;
+  width: 19cqw;
+  text-align: center;
+}
+.slide-qr img {
+  width: 13cqw; height: auto;
+  display: block; margin: 0 auto;
+  background: #fff; padding: 0.8cqw;
+  border-radius: 6px;
+  box-shadow: 0 1px 5px rgba(0,0,0,.15);
+}
+.slide-qr .cap {
+  display: block;
+  margin-top: .5em;
+  font-size: 1.7cqh;
+  line-height: 1.35;
+  color: var(--muted);
+}
+.slide.has-qr .page-no { display: none; }  /* QRがある表紙はページ番号を隠す */
+body.mode-present .slide-qr { bottom: calc(3cqh + 58px); }  /* 発表モードは下部バーを避けて少し上げる */
+
 /* タイトルスライド（本文だけで画像が無いとき中央寄せしたい場合に使う） */
 .slide-inner.cover { align-items: center; justify-content: center; text-align: center; }
 .slide-inner.cover h1 { font-size: 2.6em; color: var(--accent-dark); }
