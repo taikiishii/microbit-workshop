@@ -1,5 +1,5 @@
 ---
-id: 04
+id: b4
 slug: sound
 section: 基礎編
 emoji: 🔔

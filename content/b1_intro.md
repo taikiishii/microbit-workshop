@@ -1,5 +1,5 @@
 ---
-id: 01
+id: b1
 slug: intro
 section: 基礎編
 emoji: 🔰

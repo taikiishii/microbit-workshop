@@ -1,29 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>⑥ 無線でつうしんしよう — マイクロビットワークショップ</title>
-<link rel="stylesheet" href="assets/deck.css">
-</head>
-<body>
+---
+id: b5
+slug: radio
+section: 基礎編
+emoji: 📡
+num: 5
+color: c5
+nav_title: ⑤ 無線でつうしんしよう
+card_title: 無線でつうしんしよう
+desc: 2台以上のマイクロビットで、電波を使ってメッセージを送り合おう。
+---
 
-<div class="toolbar">
-  <a class="home" href="index.html">← もくじ</a>
-  <span class="title">⑥ 無線でつうしんしよう</span>
-  <span class="spacer"></span>
-  <button id="btn-present">▶ 発表モード</button>
-  <button class="ghost" id="btn-print">印刷 / PDF</button>
-</div>
-
-<div class="deck" id="deck">
-  <p class="deck-hint">スクロールで読めます。「発表モード」で1枚ずつ全画面表示、「印刷 / PDF」でスライド形式の配布資料になります。</p>
-</div>
-
-<!-- このファイルは build.py が content/ の Markdown から自動生成します。直接編集しないでください。 -->
-<script type="text/markdown" id="deck-source">
 {cover}
-{qr: assets/img/qr/06.svg}
 # 📡 無線でつうしんしよう
 
 マイクロビット どうしでメッセージを送り合おう
@@ -45,7 +32,7 @@
 
 :::
 
-![電波でメッセージを送り合う](assets/img/06/concept.png)
+![電波でメッセージを送り合う](img/concept.png)
 
 ---
 
@@ -62,7 +49,7 @@
 
 :::
 
-![最初だけ：無線のグループを設定 1](assets/img/06/group.png)
+![最初だけ：無線のグループを設定 1](img/group.png)
 
 ---
 
@@ -78,7 +65,7 @@
 
 :::
 
-![ボタンAが押されたとき：無線で数値を送信 1](assets/img/06/send.png)
+![ボタンAが押されたとき：無線で数値を送信 1](img/send.png)
 
 ---
 
@@ -95,7 +82,7 @@
 
 :::
 
-![無線で受信したとき：アイコンを表示](assets/img/06/receive.png)
+![無線で受信したとき：アイコンを表示](img/receive.png)
 
 ---
 
@@ -111,9 +98,4 @@
 
 :::
 
-![ふって送る／受信して数を表示](assets/img/06/example.png)
-</script>
-
-<script src="assets/deck.js"></script>
-</body>
-</html>
+![ふって送る／受信して数を表示](img/example.png)

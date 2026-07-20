@@ -1,29 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>③ ボタンで表示を変えよう — マイクロビットワークショップ</title>
-<link rel="stylesheet" href="assets/deck.css">
-</head>
-<body>
+---
+id: b3
+slug: buttons
+section: 基礎編
+emoji: 🔘
+num: 3
+color: c3
+nav_title: ③ ボタンで表示を変えよう
+card_title: ボタンで表示を変えよう
+desc: A・Bボタンを使って、LEDの表示や動きを変えてみよう。
+---
 
-<div class="toolbar">
-  <a class="home" href="index.html">← もくじ</a>
-  <span class="title">③ ボタンで表示を変えよう</span>
-  <span class="spacer"></span>
-  <button id="btn-present">▶ 発表モード</button>
-  <button class="ghost" id="btn-print">印刷 / PDF</button>
-</div>
-
-<div class="deck" id="deck">
-  <p class="deck-hint">スクロールで読めます。「発表モード」で1枚ずつ全画面表示、「印刷 / PDF」でスライド形式の配布資料になります。</p>
-</div>
-
-<!-- このファイルは build.py が content/ の Markdown から自動生成します。直接編集しないでください。 -->
-<script type="text/markdown" id="deck-source">
 {cover}
-{qr: assets/img/qr/03.svg}
 # ③ ボタンで表示を変えよう
 
 A・Bボタンで動きを変える
@@ -44,7 +31,7 @@ A・Bボタンで動きを変える
 
 :::
 
-![左が Aボタン、右が Bボタン、まん中の上がタッチロゴ](assets/img/03/s02_02.png)
+![左が Aボタン、右が Bボタン、まん中の上がタッチロゴ](img/s02_02.png)
 
 ---
 
@@ -59,8 +46,8 @@ A・Bボタンで動きを変える
 
 :::
 
-![「入力」メニューのブロック](assets/img/03/s03_03.png)
-![組み合わせたところ](assets/img/03/s03_06.png)
+![「入力」メニューのブロック](img/s03_03.png)
+![組み合わせたところ](img/s03_06.png)
 
 ---
 
@@ -73,8 +60,8 @@ A・Bボタンで動きを変える
 
 :::
 
-![クリックしてアイコンをえらぶ](assets/img/03/s04_07.png)
-![右クリック →「複製する」](assets/img/03/s04_09.png)
+![クリックしてアイコンをえらぶ](img/s04_07.png)
+![右クリック →「複製する」](img/s04_09.png)
 
 ---
 
@@ -87,8 +74,8 @@ A・Bボタンで動きを変える
 
 :::
 
-![「A」を「B」に変える](assets/img/03/s05_11.png)
-![Bボタン用のブロック](assets/img/03/s05_14.png)
+![「A」を「B」に変える](img/s05_11.png)
+![Bボタン用のブロック](img/s05_14.png)
 
 ---
 
@@ -105,10 +92,5 @@ A・Bボタンで動きを変える
 
 :::
 
-![Aボタンを押すと](assets/img/03/s06_16.png)
-![Bボタンを押すと](assets/img/03/s06_17.png)
-</script>
-
-<script src="assets/deck.js"></script>
-</body>
-</html>
+![Aボタンを押すと](img/s06_16.png)
+![Bボタンを押すと](img/s06_17.png)

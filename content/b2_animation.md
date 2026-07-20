@@ -1,5 +1,5 @@
 ---
-id: 02
+id: b2
 slug: animation
 section: 基礎編
 emoji: 🎬
