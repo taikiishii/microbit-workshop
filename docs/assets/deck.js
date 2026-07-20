@@ -19,7 +19,7 @@
 (function () {
   "use strict";
 
-  var MASCOT = "assets/img/hakase.png"; // 吹き出しに出る博士
+  var MASCOT = "../assets/hakase.png"; // 吹き出しに出る博士（章ページは1階層下）
 
   // ---- インライン記法 ---------------------------------------------------
   function esc(s) {

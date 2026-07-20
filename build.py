@@ -1,25 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-build.py  --  content/*.md から docs/ の教材サイトを生成するビルドスクリプト
+build.py  --  content/ から docs/ の教材サイトを生成するビルドスクリプト
 
 使い方:
     python build.py
 
-やること:
-  1. content/*.md（フロントマター付き Markdown）を1章ずつ読む
-  2. templates/chapter.html に流し込んで docs/<id>_<slug>.html を生成
-  3. 章ごとの QR コード（docs/assets/img/qr/<id>.svg）を生成
-  4. content/<id>/img/ の画像を docs/assets/img/<id>/ にコピー（大きい画像は縮小）
-  5. 全章のフロントマターから docs/index.html（もくじ）を生成
+構成（章ごとに1フォルダ・content と docs が対称）:
+    content/<章>/index.md   +  content/<章>/img/*     （あなたが編集するのはここだけ）
+        │  python build.py
+        ▼
+    docs/<章>/index.html    +  docs/<章>/img/*  +  docs/<章>/qr.svg
+    docs/assets/            … deck.css / deck.js / hakase.png / qr.svg（共通部品）
+    docs/index.html         … もくじ
 
-依存: segno（QR生成）, Pillow（画像縮小・任意）
-      pip install segno pillow
+依存: segno（QR生成）, Pillow（画像縮小・任意）  →  pip install segno pillow
 """
 
 import os, re, sys, shutil, html
 
-# Windows コンソール等での文字化け・エンコードエラーを防ぐ
 try:
     sys.stdout.reconfigure(encoding="utf-8")
 except Exception:
@@ -55,7 +54,6 @@ def parse_frontmatter(text):
     if not text.startswith("---"):
         return {}, text
     lines = text.split("\n")
-    # 2つ目の '---' を探す
     end = None
     for i in range(1, len(lines)):
         if lines[i].strip() == "---":
@@ -81,93 +79,78 @@ def make_qr(url, out_path):
            border=4, xmldecl=False, svgns=True, nl=False)
 
 
-def copy_images(cid, body):
-    """body 内の img/xxx を assets/img/<cid>/xxx に書き換え、実ファイルをコピー。"""
-    srcdir = os.path.join(CONTENT, cid, "img")
-    refs = set(re.findall(r"\]\(img/([^)]+)\)", body))
-    if refs:
-        dstdir = os.path.join(DOCS, "assets", "img", cid)
-        os.makedirs(dstdir, exist_ok=True)
-        for name in sorted(refs):
-            src = os.path.join(srcdir, name)
-            dst = os.path.join(dstdir, name)
-            if not os.path.exists(src):
-                print("  [!] 画像が見つかりません: content/%s/img/%s" % (cid, name))
-                continue
-            _copy_or_resize(src, dst)
-        body = body.replace("](img/", "](assets/img/%s/" % cid)
-    return body
-
-
 def _copy_or_resize(src, dst):
     try:
         from PIL import Image
         im = Image.open(src)
         if im.width > MAX_IMG_WIDTH:
             h = int(im.height * MAX_IMG_WIDTH / im.width)
-            im = im.resize((MAX_IMG_WIDTH, h))
-            im.save(dst)
+            im.resize((MAX_IMG_WIDTH, h)).save(dst)
             return
     except Exception:
         pass
     shutil.copy2(src, dst)
 
 
-def build_chapter(meta, body, chapter_tpl):
-    cid = meta["id"]
-    slug = meta["slug"]
-    out_name = "%s_%s.html" % (cid, slug)
-    sec = SECTION_MAP.get(meta["section"], {})
-    suffix = sec.get("suffix", "")
+def copy_images(chapter_dir, body, out_dir):
+    """body 内の img/xxx を content/<章>/img から docs/<章>/img へコピー（パスはそのまま）。"""
+    refs = sorted(set(re.findall(r"\]\(img/([^)]+)\)", body)))
+    if not refs:
+        return
+    srcdir = os.path.join(CONTENT, chapter_dir, "img")
+    dstdir = os.path.join(out_dir, "img")
+    os.makedirs(dstdir, exist_ok=True)
+    for name in refs:
+        src = os.path.join(srcdir, name)
+        if not os.path.exists(src):
+            print("  [!] 画像が見つかりません: content/%s/img/%s" % (chapter_dir, name))
+            continue
+        _copy_or_resize(src, os.path.join(dstdir, name))
 
-    # 画像 img/ を assets/img/<id>/ に書き換え＋コピー
-    body = copy_images(cid, body)
 
-    # 表紙に QR を自動挿入（最初の {cover} の直後）
-    qr_rel = "assets/img/qr/%s.svg" % cid
+def build_chapter(meta, body, chapter_dir, chapter_tpl):
+    out_dir = os.path.join(DOCS, chapter_dir)
+    os.makedirs(out_dir, exist_ok=True)
+
+    copy_images(chapter_dir, body, out_dir)
+
+    # 表紙に QR を自動挿入（最初の {cover} の直後）。QRは章フォルダ内 qr.svg
     if "{cover}" in body and "{qr:" not in body:
-        body = body.replace("{cover}", "{cover}\n{qr: %s}" % qr_rel, 1)
+        body = body.replace("{cover}", "{cover}\n{qr: qr.svg}", 1)
+    make_qr(BASE_URL + chapter_dir + "/", os.path.join(out_dir, "qr.svg"))
 
-    # QR 生成
-    os.makedirs(os.path.join(DOCS, "assets", "img", "qr"), exist_ok=True)
-    make_qr(BASE_URL + out_name, os.path.join(DOCS, "assets", "img", "qr", "%s.svg" % cid))
-
-    page_title = meta["nav_title"] + suffix
+    suffix = SECTION_MAP.get(meta["section"], {}).get("suffix", "")
     out = (chapter_tpl
-           .replace("{{PAGE_TITLE}}", page_title)
+           .replace("{{PAGE_TITLE}}", meta["nav_title"] + suffix)
            .replace("{{NAV_TITLE}}", meta["nav_title"])
            .replace("{{BODY}}", body))
-    with open(os.path.join(DOCS, out_name), "w", encoding="utf-8", newline="\n") as f:
+    with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(out)
-    return out_name
 
 
-def card_html(meta, out_name):
-    color = meta.get("color", "")
+def card_html(meta, chapter_dir):
     num = html.escape(meta.get("num", ""))
-    emoji = meta.get("emoji", "")
     title = html.escape(meta.get("card_title", ""))
     desc = html.escape(meta.get("desc", ""))
     level = meta.get("level")
     level_html = ('<span class="level">%s</span>\n        ' % html.escape(level)) if level else ""
     return (
-        '      <a class="card %s" href="%s">\n'
+        '      <a class="card %s" href="%s/">\n'
         '        <div class="face"><span class="num">%s</span><span class="emoji">%s</span></div>\n'
         '        %s<h2>%s</h2>\n'
         '        <p>%s</p>\n'
         '      </a>'
-    ) % (color, out_name, num, emoji, level_html, title, desc)
+    ) % (meta.get("color", ""), chapter_dir, num, meta.get("emoji", ""), level_html, title, desc)
 
 
 def build_index(chapters, index_tpl):
-    """chapters: list of (meta, out_name). セクションごとにカードを並べる。"""
     blocks = []
     for name, sec in SECTIONS:
-        items = [(m, o) for (m, o) in chapters if m.get("section") == name]
+        items = [(m, d) for (m, d) in chapters if m.get("section") == name]
         if not items:
             continue
-        items.sort(key=lambda t: t[0]["id"])
-        cards = "\n\n".join(card_html(m, o) for m, o in items)
+        items.sort(key=lambda t: t[0].get("id", t[1]))
+        cards = "\n\n".join(card_html(m, d) for m, d in items)
         blocks.append(
             '  <!-- ============ %s ============ -->\n'
             '  <section class="section %s">\n'
@@ -189,26 +172,25 @@ def main():
     chapter_tpl = open(os.path.join(TPL, "chapter.html"), encoding="utf-8").read()
     index_tpl = open(os.path.join(TPL, "index.html"), encoding="utf-8").read()
 
-    md_files = sorted(f for f in os.listdir(CONTENT)
-                      if f.endswith(".md") and not f.startswith("_"))
-    if not md_files:
-        print("content/ に .md がありません。"); return
-
+    dirs = sorted(d for d in os.listdir(CONTENT)
+                  if os.path.isdir(os.path.join(CONTENT, d)) and not d.startswith("_"))
     chapters = []
-    for fn in md_files:
-        text = open(os.path.join(CONTENT, fn), encoding="utf-8").read()
-        meta, body = parse_frontmatter(text)
-        missing = [k for k in ("id", "slug", "section", "nav_title", "card_title") if k not in meta]
+    for d in dirs:
+        mdpath = os.path.join(CONTENT, d, "index.md")
+        if not os.path.exists(mdpath):
+            print("  [!] %s に index.md がありません（スキップ）" % d); continue
+        meta, body = parse_frontmatter(open(mdpath, encoding="utf-8").read())
+        missing = [k for k in ("section", "nav_title", "card_title") if k not in meta]
         if missing:
-            print("  [!] %s: フロントマター不足 %s（スキップ）" % (fn, missing)); continue
+            print("  [!] %s: フロントマター不足 %s（スキップ）" % (d, missing)); continue
         if meta["section"] not in SECTION_MAP:
-            print("  [!] %s: 未知の section '%s'（スキップ）" % (fn, meta["section"])); continue
-        out_name = build_chapter(meta, body, chapter_tpl)
-        chapters.append((meta, out_name))
-        print("  ✓ %-22s → docs/%s" % (fn, out_name))
+            print("  [!] %s: 未知の section '%s'（スキップ）" % (d, meta["section"])); continue
+        build_chapter(meta, body, d, chapter_tpl)
+        chapters.append((meta, d))
+        print("  ✓ content/%-18s → docs/%s/" % (d, d))
 
     build_index(chapters, index_tpl)
-    print("  ✓ もくじ           → docs/index.html（%d章）" % len(chapters))
+    print("  ✓ もくじ                        → docs/index.html（%d章）" % len(chapters))
     print("完了。")
 
 
