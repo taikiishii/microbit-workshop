@@ -1,0 +1,9 @@
+{
+  // VS Code の Markdown 編集で画像を貼り付けたときの保存先。
+  // その章フォルダ直下の image/ に、フラットに保存する（index/ などのサブフォルダを作らない）。
+  "markdown.copyFiles.destination": {
+    "**/*.md": "image/"
+  },
+  // 参照は image/ からの相対にする
+  "markdown.editor.filePaste.copyIntoWorkspace": "mediaFiles"
+}

@@ -31,8 +31,9 @@ desktop.ini
 # macOS
 .DS_Store
 
-# エディタ
-.vscode/
+# エディタ（ただし共有したい settings.json は含める）
+.vscode/*
+!.vscode/settings.json
 .idea/
 *.swp
 
