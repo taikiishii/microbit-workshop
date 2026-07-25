@@ -31,7 +31,7 @@ desc: もくじカードに出る、1〜2文の説明。何ができるように
 
 :::
 
-![説明のキャプション](image/overview.png)
+![説明のキャプション](image/index/overview.png)
 
 ---
 
@@ -48,7 +48,7 @@ desc: もくじカードに出る、1〜2文の説明。何ができるように
 
 :::
 
-![makecodeの画面](image/step1.png)
+![makecodeの画面](image/index/step1.png)
 
 ---
 
@@ -63,4 +63,4 @@ desc: もくじカードに出る、1〜2文の説明。何ができるように
 
 :::
 
-![動いているようす](image/result.png)
+![動いているようす](image/index/result.png)

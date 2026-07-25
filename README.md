@@ -20,9 +20,9 @@
 
 **1つの章 = 1つのフォルダ**（`content/` と `docs/` が対称）。
 
-- `content/<章>/` … 各章の **`index.md`（編集するのはここ）** と `image/`（画面キャプチャ）
+- `content/<章>/` … 各章の **`index.md`（編集するのはここ）** と `image/index/`（画面キャプチャ）
 - `templates/`, `build.py` … 変換のしくみ
-- `docs/<章>/` … `build.py` が生成する `index.html` / `qr.svg` / `image/`（GitHub Pages 配信元。直接編集しない）
+- `docs/<章>/` … `build.py` が生成する `index.html` / `qr.svg` / `image/index/`（GitHub Pages 配信元。直接編集しない）
 - `docs/assets/` … 共通部品（`deck.css` / `deck.js` / `hakase.png` / `qr.svg`）
 - `archive/` … 元の PowerPoint など（`.gitignore` で除外・**非公開**）
 

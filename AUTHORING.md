@@ -3,18 +3,19 @@
 このリポジトリの教材は **Markdown だけ書けば作れます**。HTML・QRコード・もくじ（index）は
 `build.py` が自動生成するので、`docs/` の中を直接さわる必要はありません。
 
-**1つの章 = 1つのフォルダ**です。フォルダの中に本文（index.md）と画像（image/）を入れます。
+**1つの章 = 1つのフォルダ**です。フォルダの中に本文（index.md）と画像（image/index/）を入れます。
+画像は VS Code で貼り付ければ自動で `image/index/` に保存されるので、フォルダは意識しなくてOKです。
 
 ```
 content/                    ← ここだけ編集する
   _template/index.md        ← 新しい章のひな形
   b1_intro/                 ← 章フォルダ（フォルダ名 = <id>_<slug>）
     index.md                ←   本文（Markdown）
-    image/                    ←   画面キャプチャ
+    image/index/            ←   画面キャプチャ（VS Codeが自動でここに保存）
 templates/                  ← HTMLのひな形（基本さわらない）
 build.py                    ← 変換スクリプト
 docs/                       ← 自動生成される公開ファイル（さわらない）
-  b1_intro/{index.html, qr.svg, image/}   ← content と同じ形で出力される
+  b1_intro/{index.html, qr.svg, image/index/}   ← content と同じ形で出力される
   assets/{deck.css, deck.js, hakase.png, qr.svg}
   index.html
 ```
@@ -30,7 +31,7 @@ docs/                       ← 自動生成される公開ファイル（さわ
    cp -r content/_template content/e2_温度センサー
    ```
 2. `content/e2_温度センサー/index.md` を**Markdownで書く**（下の「書き方」参照）
-3. 画面キャプチャを `content/e2_温度センサー/image/` に入れる（必要なら矢印などを付ける → 「マーキング」参照）
+3. 画面キャプチャを本文に貼り付ける（VS Codeなら自動で `content/e2_温度センサー/image/index/` に保存。必要なら矢印などを付ける → 「マーキング」参照）
 4. **ビルドして確認 → 公開**
    ```bash
    python build.py                 # docs/ を再生成（HTML・QR・もくじ）
@@ -70,7 +71,7 @@ docs/                       ← 自動生成される公開ファイル（さわ
 | `:::` | ここで左右2カラムに分ける（左=説明、右=画像 が基本） |
 | `1. ` / `- ` | 番号つき手順／箇条書き |
 | `**太字**` `` `コード` `` | 強調・コード表示 |
-| `![キャプション](image/xxx.png)` | 画像（連続で書くと横並び） |
+| `![キャプション](image/index/xxx.png)` | 画像（連続で書くと横並び） |
 | `> ふつうの文` | 博士のヒント吹き出し（緑） |
 | `> ⚠ 文` | 注意の吹き出し（オレンジ） |
 | `> 💪 文` | チャレンジの吹き出し（青） |
@@ -81,10 +82,9 @@ docs/                       ← 自動生成される公開ファイル（さわ
 
 ## 画面キャプチャの渡し方
 
-- その章のフォルダの **`image/`** に入れる（例：`content/e2_温度センサー/image/step1.png`）
-- 本文からは **`image/ファイル名`** で参照（`![説明](image/step1.png)`）
-- **VS Code の Markdown 編集で画像を貼り付ける**と、自動で `image/`（`image/index/…` のようなサブフォルダを含む）に保存され、`![](image/…)` の参照も挿入されます。**そのままビルドすれば公開されます**（サブフォルダのままでもOK）
-- ビルド時に `docs/<章>/image/` へコピーされ、大きすぎる画像は自動で縮小されます
+- いちばん簡単なのは **VS Code で画像をコピー → 本文に貼り付け**。自動で **`image/index/`** に保存され、`![](image/index/…)` の参照も入ります。**パスやフォルダは気にしなくてOK**（このリポジトリの `.vscode/settings.json` で保存先を `image/index/` に設定済み）
+- 手で置くときも、その章の **`image/index/`** に入れて `![説明](image/index/step1.png)` と書けばOK
+- ビルド時に `docs/<章>/image/index/` へコピーされ、大きすぎる画像は自動で縮小されます
 - 名前は順番がわかるように `01_open.png` `02_block.png` … と付けると迷いません
 - 形式は画面キャプチャなら **PNG** がおすすめ
 
@@ -98,7 +98,7 @@ docs/                       ← 自動生成される公開ファイル（さわ
 1. https://getgreenshot.org/ からダウンロードしてインストール
 2. `PrintScreen` キーで範囲を選んでキャプチャ → そのまま注釈エディタが開く
 3. ツールバーで **矢印・四角・ハイライト・番号・文字** を追加
-4. 「名前を付けて保存」で `content/<id>/image/` に PNG 保存
+4. 「名前を付けて保存」で `content/<章>/image/index/` に PNG 保存（または VS Code に貼り付け）
 
 > **ShareX**（https://getshar.com/ ）も同様に無料で高機能です。お好みで。
 
