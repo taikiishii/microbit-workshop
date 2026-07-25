@@ -5,7 +5,7 @@ section: 拡張編
 emoji: 🌈
 num: 1
 color: c5
-nav_title: ① フルカラーLEDを使おう
+nav_title: フルカラーLEDを使おう
 card_title: フルカラーLEDを使おう
 desc: NeoPixel を接続して、いろいろな色やレインボーを光らせよう。作品づくりにも挑戦。
 ---
