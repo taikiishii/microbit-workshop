@@ -93,19 +93,21 @@ def _copy_or_resize(src, dst):
 
 
 def copy_images(chapter_dir, body, out_dir):
-    """body 内の img/xxx を content/<章>/img から docs/<章>/img へコピー（パスはそのまま）。"""
-    refs = sorted(set(re.findall(r"\]\(img/([^)]+)\)", body)))
-    if not refs:
-        return
-    srcdir = os.path.join(CONTENT, chapter_dir, "img")
-    dstdir = os.path.join(out_dir, "img")
-    os.makedirs(dstdir, exist_ok=True)
-    for name in refs:
-        src = os.path.join(srcdir, name)
-        if not os.path.exists(src):
-            print("  [!] 画像が見つかりません: content/%s/img/%s" % (chapter_dir, name))
+    """body 内の相対パス画像を content/<章>/… から docs/<章>/… へコピー。
+    image/ でも image/index/ でも、サブフォルダ構成を保ったままコピーする
+    （VS Code で貼り付けた画像がどのフォルダに入っても壊れないように）。"""
+    for rel in sorted(set(re.findall(r"\]\(([^)]+)\)", body))):
+        if rel.startswith(("http://", "https://", "/", "#", "mailto:")):
             continue
-        _copy_or_resize(src, os.path.join(dstdir, name))
+        if not re.search(r"\.(png|jpe?g|gif|svg|webp)$", rel, re.I):
+            continue
+        src = os.path.join(CONTENT, chapter_dir, *rel.split("/"))
+        if not os.path.exists(src):
+            print("  [!] 画像が見つかりません: content/%s/%s" % (chapter_dir, rel))
+            continue
+        dst = os.path.join(out_dir, *rel.split("/"))
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        _copy_or_resize(src, dst)
 
 
 def build_chapter(meta, body, chapter_dir, chapter_tpl):
