@@ -8,6 +8,7 @@ color: c3
 nav_title: ③ 人感センサーを使ってみよう
 card_title: 人感センサーを使ってみよう
 desc: 人が動いたのを検知して、LED表示を変えたり音を鳴らしたりしよう。
+wip: true
 ---
 
 {cover}

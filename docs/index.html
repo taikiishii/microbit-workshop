@@ -72,6 +72,12 @@
   .level{ display:inline-block; font-size:12px; font-weight:800; color:#fff;
           border-radius:999px; padding:3px 12px; margin-bottom:12px; }
 
+  /* 工事中ラベル（まだ作りかけの章） */
+  .wip{ display:inline-block; font-size:12px; font-weight:800; color:#7a4b00;
+        background:#ffe9b0; border:1.5px solid #e0a324; border-radius:999px;
+        padding:2px 12px 3px; margin-bottom:12px; }
+  .card.wip-card{ background:#fffdf6; }
+
   .c1{ --frame:#ffb3c1; } .c2{ --frame:#ffd98a; } .c3{ --frame:#a7e3a7; }
   .c4{ --frame:#9fd8f0; } .c5{ --frame:#c9b3e8; }
   .r1{ --frame:#a7e3a7; } .r2{ --frame:#ffcf5c; } .r3{ --frame:#ff8a80; }
@@ -119,6 +125,7 @@
     .card h2{ font-size:17px; }
     .card p{ font-size:13px; }
     .level{ margin-bottom:10px; }
+    .wip{ margin-bottom:10px; font-size:11.5px; }
 
     .qr{ margin:22px auto 4px; padding:16px 18px; gap:14px; }
     .qr img{ width:112px; height:112px; }
@@ -205,8 +212,9 @@
         <p>サーボモーターをつないで、角度を指定して動かしてみよう。</p>
       </a>
 
-      <a class="card c3" href="e3_motion/">
+      <a class="card c3 wip-card" href="e3_motion/">
         <div class="face"><span class="num">3</span><span class="emoji">🚶</span></div>
+        <span class="wip">🚧 工事中</span>
         <h2>人感センサーを使ってみよう</h2>
         <p>人が動いたのを検知して、LED表示を変えたり音を鳴らしたりしよう。</p>
       </a>

@@ -136,13 +136,24 @@ def card_html(meta, chapter_dir):
     desc = html.escape(meta.get("desc", ""))
     level = meta.get("level")
     level_html = ('<span class="level">%s</span>\n        ' % html.escape(level)) if level else ""
+
+    # wip … まだ作りかけの章に「工事中」マークを付ける
+    #   wip: true    →  🚧 工事中
+    #   wip: 準備中   →  🚧 準備中（好きな文字にできる）
+    wip = meta.get("wip", "").strip()
+    if wip.lower() in ("", "false", "no", "0"):
+        wip = ""
+    label = "工事中" if wip.lower() in ("true", "yes", "1") else wip
+    wip_html = ('<span class="wip">🚧 %s</span>\n        ' % html.escape(label)) if wip else ""
+
+    cls = " ".join(c for c in (meta.get("color", ""), "wip-card" if wip else "") if c)
     return (
         '      <a class="card %s" href="%s/">\n'
         '        <div class="face"><span class="num">%s</span><span class="emoji">%s</span></div>\n'
-        '        %s<h2>%s</h2>\n'
+        '        %s%s<h2>%s</h2>\n'
         '        <p>%s</p>\n'
         '      </a>'
-    ) % (meta.get("color", ""), chapter_dir, num, meta.get("emoji", ""), level_html, title, desc)
+    ) % (cls, chapter_dir, num, meta.get("emoji", ""), wip_html, level_html, title, desc)
 
 
 def build_index(chapters, index_tpl):
