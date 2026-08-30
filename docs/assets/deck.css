@@ -188,11 +188,112 @@ body { background: var(--page-bg); }
 .callout .callout-body { flex: 1; min-width: 0; }
 .callout .callout-body p { margin: 0; }
 
+/* =========================================================================
+   コードカード（Markdown の ```js … ``` から作られる）
+   コーディング編（JavaScript / Python）でコードを見せるための表示。
+   4つのモードでそれぞれ読みやすくなるように作ってある：
+     Web（パソコン） … 右上の「📋 コピー」でワンクリックコピー（ボタンは実寸px）
+     スマホ          … 下のスマホ用ブロックで文字を 13px に（cqh は使えないため）
+     発表モード      … 文字サイズは行数から自動計算。ボタンは消す
+     印刷 / PDF      … 背景も色も残して印刷。ボタンは消す
+   ========================================================================= */
+.code-card {
+  --code-lines: 6;                  /* deck.js が実際の行数を入れる */
+  --code-cols: 40;                  /* deck.js がいちばん長い行の文字数を入れる */
+  --code-avail: 86cqw;              /* 使える横はば（全幅に置いたとき） */
+  display: flex; flex-direction: column;
+  min-height: 0;
+  margin: .3em 0 .5em;
+  background: #fbfcfd;
+  border: 1.5px solid #cfdadd;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.code-card .code-head {
+  flex: 0 0 auto;
+  display: flex; align-items: center; gap: .7em;
+  padding: .3em .6em;
+  background: #eef3f5;
+  border-bottom: 1px solid #dde6e8;
+}
+.code-card .lang {
+  flex: 0 0 auto;
+  font-size: .58em; font-weight: 800; letter-spacing: .03em;
+  color: #4a5b60; background: #ffe066;
+  border-radius: 999px; padding: .25em .8em;
+}
+.code-card[data-lang="py"] .lang { background: #bfdcf5; }
+.code-card .cap {
+  flex: 1 1 auto; min-width: 0;
+  font-size: .62em; font-weight: 700; color: var(--accent-dark);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* コピーボタンだけは指で押せる実寸（px）にする。中身のコードは cqh で拡大縮小 */
+.code-copy {
+  flex: 0 0 auto;
+  font-family: inherit; font-size: 12px; font-weight: 700; line-height: 1;
+  color: #fff; background: var(--accent);
+  border: none; border-radius: 999px;
+  padding: 6px 12px; cursor: pointer; white-space: nowrap;
+}
+.code-copy:hover { filter: brightness(1.06); }
+.code-copy.done { background: #2fa36b; }
+.code-copy.fail { background: #e07a3a; }
+
+.code-card pre {
+  flex: 1 1 auto; min-height: 0;
+  margin: 0; padding: .5em .7em .6em;
+  overflow: auto;
+  font-family: "Consolas", "SFMono-Regular", "Menlo", "Courier New", monospace;
+  color: #22323a;
+  line-height: 1.5;
+  counter-reset: cl;
+  font-size: 2.4cqh;                                      /* 古いブラウザ用 */
+  /* 行数が多いほど・行が長いほど小さく＝16:9のスライドからはみ出さない
+     （0.62 … 等幅フォント1文字ぶんの横はば / 4.2 … 行番号と左右の余白ぶん） */
+  font-size: min(2.9cqh,
+                 calc(40cqh / var(--code-lines)),
+                 calc(var(--code-avail) / (0.62 * var(--code-cols) + 4.2)));
+  tab-size: 2;
+}
+/* 1行 ＝ .cl。行番号は CSS カウンタなので、選んでコピーしても番号は入らない */
+.code-card .cl {
+  counter-increment: cl;
+  position: relative;
+  padding-left: 2.7em;
+  white-space: pre;
+}
+.code-card .cl::before {
+  content: counter(cl);
+  position: absolute; left: 0; top: 0;
+  width: 1.9em; text-align: right;
+  color: #a8b8bd; font-weight: 400;
+  -webkit-user-select: none; user-select: none;
+}
+.code-card .cl:empty::after { content: ""; display: inline-block; }  /* 空行の高さを保つ */
+
+/* 色分け（明るい背景でも見やすい・プロジェクターでもつぶれない濃さ） */
+.code-card .t-key  { color: #7c3aed; font-weight: 700; }   /* let / function / if */
+.code-card .t-ns   { color: #1d4ed8; font-weight: 700; }   /* basic / input / music */
+.code-card .t-fn   { color: #b02a8f; }                     /* showIcon( … */
+.code-card .t-type { color: #0f766e; }                     /* IconNames / Button */
+.code-card .t-str  { color: #c2410c; }                     /* "もじ" */
+.code-card .t-num  { color: #0e7490; }                     /* 500 */
+.code-card .t-com  { color: #7b8b91; font-style: italic; } /* // コメント */
+
+body.mode-present .code-copy { display: none; }   /* 発表中は押せても意味がないので隠す */
+
 /* 2カラム。画像側（col-media）を大きく取り、手順テキスト側は控えめに */
 .cols { flex: 1; display: flex; gap: 3.5cqw; align-items: stretch; min-height: 0; }
 .cols .col { flex: 1 1 0; min-width: 0; min-height: 0;
-             display: flex; flex-direction: column; justify-content: center; }
+             display: flex; flex-direction: column; justify-content: center;
+             /* 中身が多すぎたとき、上にはみ出してタイトルに重ならないようにする */
+             justify-content: safe center; }
 .cols .col.col-media { flex: 1.9 1 0; }        /* スクリーンショットを大きく */
+.cols .col.col-code { flex: 1.5 1 0; }         /* コードも少し広く取る */
+.cols .col .code-card { max-height: 100%; --code-avail: 42cqw; }  /* カラムからはみ出さない */
+.cols .col.col-code .code-card { --code-avail: 50cqw; }
 .cols .col.col-media figure { height: 100%; display: flex; flex-direction: column; justify-content: center; }
 .cols .col.col-media img { max-height: 100%; }
 .cols .col.center { justify-content: center; align-items: center; }
@@ -280,6 +381,9 @@ body.mode-present .present-bar { display: flex; }
     background: #fff;
   }
   .slide:last-child { break-after: auto; }
+  /* コード：ボタンは紙に出さない。背景と色分けはそのまま印刷する */
+  .code-copy { display: none !important; }
+  .code-card { background: #fbfcfd !important; border-color: #b9c6ca; }
   /* 印刷では発表モードのfixed配置を打ち消す */
   body.mode-present .slide { position: static; transform: none; top: auto; left: auto; }
   body.mode-present .slide { display: block !important; }
@@ -442,6 +546,24 @@ body.mode-present .present-bar { display: flex; }
     border-radius: 12px; font-size: .92em; line-height: 1.55;
   }
   body:not(.mode-present) .callout .hakase { width: 40px; }
+
+  /* ---- コードカード -------------------------------------------------------
+     スマホでは container-type が無効（＝cqh が使えない）ので、
+     文字サイズはすべて px で指定しなおす。長い行は横スクロールで読む。 */
+  body:not(.mode-present) .code-card { margin: 12px 0 10px; border-radius: 12px; }
+  body:not(.mode-present) .code-card .code-head { flex-wrap: wrap; gap: 8px; padding: 7px 9px; }
+  body:not(.mode-present) .code-card .lang { font-size: 11px; padding: 3px 9px; }
+  body:not(.mode-present) .code-card .cap {
+    font-size: 12.5px; white-space: normal; overflow: visible;
+  }
+  body:not(.mode-present) .code-copy { font-size: 12.5px; padding: 8px 14px; }
+  body:not(.mode-present) .code-card pre {
+    font-size: 13px; line-height: 1.65; padding: 9px 10px 11px;
+    -webkit-overflow-scrolling: touch;
+  }
+  /* 長い行は折り返す（横スクロールしないと読めない、を無くす）。
+     折り返した続きは行番号のとなりに揃うので、どこまでが1行かわかる */
+  body:not(.mode-present) .code-card .cl { padding-left: 2.5em; white-space: pre-wrap; }
 
   /* ---- ページ番号のバッジ ------------------------------------------------- */
   body:not(.mode-present) .slide .page-no {

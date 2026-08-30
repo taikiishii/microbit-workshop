@@ -11,6 +11,7 @@ build.py  --  content/ から docs/ の教材サイトを生成するビルド�
         │  python build.py
         ▼
     docs/<章>/index.html    +  docs/<章>/img/*  +  docs/<章>/qr.svg
+                              （章フォルダ名の頭： b=基礎編 / e=拡張編 / mq=ロボットカー編 / c=コーディング編）
     docs/assets/            … deck.css / deck.js / hakase.png / qr.svg（共通部品）
     docs/index.html         … もくじ
 
@@ -44,6 +45,9 @@ SECTIONS = [
     ("ロボットカー編", dict(cls="s-robot", title="🚗 ロボットカー編（micro:Maqueen）",
                          sub="",
                          suffix=" — ロボットカー虎の巻")),
+    ("コーディング編", dict(cls="s-code", title="💻 コーディング編",
+                         sub="ブロックから文字のプログラム（JavaScript / Python）へ",
+                         suffix=" — コーディング入門")),
 ]
 SECTION_MAP = dict(SECTIONS)
 
