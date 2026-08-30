@@ -96,6 +96,10 @@
   .license a{ color:var(--accent-dark); }
   .license strong{ color:var(--accent-dark); }
 
+  /* もくじの終わりの区切り線。セクションの線と同じ形で、色は虹（ページ全体の区切り） */
+  .qr-line{ margin:40px 4px 0;
+            background:linear-gradient(90deg,#ff9eb1,#ffd98a,#a0e2a0,#9fd8f0,#c9b3e8); }
+
   /* QRコード（このページを端末で開く）
      幅はカードの並び（.grid）とそろえる。パソコンではカード3枚ぶん、
      スマホではカード1枚ぶんになる（どちらも main の横幅いっぱい）。 */
@@ -132,6 +136,7 @@
     .level{ margin-bottom:10px; }
     .wip{ margin-bottom:10px; font-size:11.5px; }
 
+    .qr-line{ margin:28px 2px 0; }
     .qr{ margin:22px 0 4px; padding:16px 18px; gap:14px; }
     .qr img{ width:112px; height:112px; }
     .qr .qr-text{ text-align:center; }
@@ -282,6 +287,8 @@
   </section>
 
   <!-- ============ QRコード ============ -->
+  <div class="section-line qr-line"></div>
+
   <div class="qr">
     <img src="assets/qr.svg" alt="このページのQRコード" width="132" height="132">
     <div class="qr-text">
