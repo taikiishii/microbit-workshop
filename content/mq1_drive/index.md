@@ -3,7 +3,7 @@ id: mq1
 slug: drive
 section: ロボットカー編
 emoji: 🚗
-num: ①
+num: 1
 color: r1
 level: 入門編
 nav_title: 🚗 入門編：基本走行

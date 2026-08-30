@@ -3,7 +3,7 @@ id: mq3
 slug: linetracer
 section: ロボットカー編
 emoji: 🛣️
-num: ③
+num: 3
 color: r3
 level: 上級編
 nav_title: 🛣️ 上級編：ライントレーサー

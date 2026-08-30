@@ -3,7 +3,7 @@ id: mq2
 slug: sensor
 section: ロボットカー編
 emoji: 🎤
-num: ②
+num: 2
 color: r2
 level: 中級編
 nav_title: 🎤 中級編：センサーで動かそう
