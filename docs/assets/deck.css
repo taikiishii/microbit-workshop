@@ -78,7 +78,7 @@ body { background: var(--page-bg); }
   max-width: min(50%, 620px);
   text-align: center;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 17px;          /* もくじ・発表モード（14px）より一回り大きく */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -510,7 +510,7 @@ body.mode-present .present-bar { display: flex; }
   .toolbar .home .ico { font-size: 16px; }
   .toolbar .title {
     position: static; transform: none; max-width: none;   /* 絶対配置を解除 */
-    flex: 1 1 auto; min-width: 0; font-size: 13px; text-align: center;
+    flex: 1 1 auto; min-width: 0; font-size: 14.5px; text-align: center;  /* ボタン（13px）より大きく */
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .toolbar .spacer { display: none; }   /* タイトルが伸びて余白の役をする */
