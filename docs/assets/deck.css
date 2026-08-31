@@ -49,9 +49,41 @@ body { background: var(--page-bg); }
   border-bottom: 1px solid var(--line);
   box-shadow: 0 1px 6px rgba(0,0,0,.05);
 }
-.toolbar .home { text-decoration: none; color: var(--accent-dark); font-weight: 700; }
-.toolbar .home:hover { text-decoration: underline; }
-.toolbar .title { font-weight: 700; font-size: 15px; }
+/* もくじへ戻るリンク。右側のボタンと同じピル型にそろえる */
+.toolbar .home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--accent-dark);
+  background: #fff;
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  padding: 8px 15px;
+  transition: filter .12s ease;
+}
+.toolbar .home .ico { font-size: 18px; line-height: 1; position: relative; top: 1px; }
+.toolbar .home:hover { filter: brightness(1.05); }
+/* 章タイトル。左のもくじボタン・右のボタンの幅に影響されず、
+   つねに画面の中央にくるように絶対配置する（.toolbar は sticky ＝ 位置の基準になる）。
+   長いタイトルは中央でそろえたまま「…」で省略。
+   pointer-events:none … 右のボタンと重なってもクリックのじゃまをしない */
+.toolbar .title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(50%, 620px);
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
 .toolbar .spacer { flex: 1; }
 .toolbar button {
   font-family: inherit;
@@ -474,9 +506,11 @@ body.mode-present .present-bar { display: flex; }
 
   /* ---- 上部ツールバー：はみ出さないように詰める -------------------------- */
   .toolbar { gap: 8px; padding: 8px 12px; }
-  .toolbar .home { font-size: 13.5px; white-space: nowrap; }
+  .toolbar .home { font-size: 13px; padding: 9px 12px; gap: 4px; white-space: nowrap; }
+  .toolbar .home .ico { font-size: 16px; }
   .toolbar .title {
-    flex: 1 1 auto; min-width: 0; font-size: 13px;
+    position: static; transform: none; max-width: none;   /* 絶対配置を解除 */
+    flex: 1 1 auto; min-width: 0; font-size: 13px; text-align: center;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .toolbar .spacer { display: none; }   /* タイトルが伸びて余白の役をする */
