@@ -11,7 +11,7 @@ build.py  --  content/ から docs/ の教材サイトを生成するビルド�
         │  python build.py
         ▼
     docs/<章>/index.html    +  docs/<章>/img/*  +  docs/<章>/qr.svg
-                              （章フォルダ名の頭： b=基礎編 / e=拡張編 / mq=ロボットカー編 / c=コーディング編）
+                              （章フォルダ名の頭： b=基礎編 / a=応用編 / e=拡張編 / mq=ロボットカー編 / c=コーディング編）
     docs/assets/            … deck.css / deck.js / hakase.png / qr.svg（共通部品）
     docs/index.html         … もくじ
 
@@ -38,6 +38,9 @@ MAX_IMG_WIDTH = 1400  # これより横が大きい画像は縮小してコピ�
 SECTIONS = [
     ("基礎編",        dict(cls="s-basic", title="🔰 基礎編",
                          sub="マイクロビットを使いこなそう",
+                         suffix=" — マイクロビットワークショップ")),
+    ("応用編",        dict(cls="s-apply", title="🧩 応用編",
+                         sub="変数・くりかえし・条件分岐でプログラムの力をつけよう",
                          suffix=" — マイクロビットワークショップ")),
     ("拡張編",        dict(cls="s-ext", title="🔌 拡張編",
                          sub="外部デバイスをつないで広げよう",

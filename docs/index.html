@@ -45,6 +45,7 @@
   .section-head .ssub{ font-size:13.5px; color:var(--muted); }
   .section-line{ height:4px; border-radius:999px; margin:0 4px 20px; }
   .s-basic .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0); }
+  .s-apply .section-line{ background:linear-gradient(90deg,#9fd8f0,#c9b3e8,#f2e394); }
   .s-ext .section-line{ background:linear-gradient(90deg,#c9b3e8,#b39ddb); }
   .s-robot .section-line{ background:linear-gradient(90deg,#a7e3a7,#ffcf5c,#ff8a80); }
   .s-code .section-line{ background:linear-gradient(90deg,#ffe066,#a8b6ff,#7ad3c8); }
@@ -81,6 +82,7 @@
 
   .c1{ --frame:#ffb3c1; } .c2{ --frame:#ffd98a; } .c3{ --frame:#a7e3a7; }
   .c4{ --frame:#9fd8f0; } .c5{ --frame:#c9b3e8; }
+  .c6{ --frame:#f2e394; } .c7{ --frame:#ffc2a8; }
   .r1{ --frame:#a7e3a7; } .r2{ --frame:#ffcf5c; } .r3{ --frame:#ff8a80; }
   /* コーディング編（j1=JavaScript の黄, j2=Python の青, j3=よてい） */
   .j1{ --frame:#ffe066; } .j2{ --frame:#a8c8f0; } .j3{ --frame:#b9e4dd; }
@@ -193,10 +195,56 @@
         <p>スピーカーと加速度センサーを使って、揺らすと音が鳴るようにしよう。</p>
       </a>
 
-      <a class="card c5" href="b5_radio/">
-        <div class="face"><span class="num">5</span><span class="emoji">📡</span></div>
+      <a class="card c6 wip-card" href="b5_light/">
+        <div class="face"><span class="num">5</span><span class="emoji">☀️</span></div>
+        <span class="wip">🚧 工事中</span>
+        <h2>明るさをはかろう</h2>
+        <p>光センサーでまわりの明るさをはかって、暗くなったら自動で光るライトを作ろう。</p>
+      </a>
+
+      <a class="card c7 wip-card" href="b6_mic/">
+        <div class="face"><span class="num">6</span><span class="emoji">🎤</span></div>
+        <span class="wip">🚧 工事中</span>
+        <h2>音に反応させよう</h2>
+        <p>マイクで音の大きさをはかって、手をたたくと表示が変わるようにしよう。</p>
+      </a>
+
+      <a class="card c5" href="b7_radio/">
+        <div class="face"><span class="num">7</span><span class="emoji">📡</span></div>
         <h2>無線で通信しよう</h2>
         <p>2台以上のマイクロビットで、電波を使ってメッセージを送り合おう。</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 応用編 ============ -->
+  <section class="section s-apply">
+    <div class="section-head">
+      <span class="stitle">🧩 応用編</span>
+      <span class="ssub">変数・くりかえし・条件分岐でプログラムの力をつけよう</span>
+    </div>
+    <div class="section-line"></div>
+
+    <div class="grid">
+      <a class="card c4 wip-card" href="a1_counter/">
+        <div class="face"><span class="num">1</span><span class="emoji">🔢</span></div>
+        <span class="wip">🚧 工事中</span>
+        <h2>変数を使おう</h2>
+        <p>数字を入れておく「変数」を使って、ボタンで数が増えたり減ったりするカウンターを作ろう。</p>
+      </a>
+
+      <a class="card c5 wip-card" href="a2_dot/">
+        <div class="face"><span class="num">2</span><span class="emoji">🎯</span></div>
+        <span class="wip">🚧 工事中</span>
+        <h2>条件分岐を使おう</h2>
+        <p>カウンターの数を点の場所にして、ボタンでLEDの点を動かそう。「もし〜なら」で端の動きを決めよう。</p>
+      </a>
+
+      <a class="card c6 wip-card" href="a3_loop/">
+        <div class="face"><span class="num">3</span><span class="emoji">🔁</span></div>
+        <span class="wip">🚧 工事中</span>
+        <h2>くりかえしを使おう</h2>
+        <p>「くりかえし」ブロックで、LEDの点を左から右に流そう。少ないブロックでアニメーションが作れるよ。</p>
       </a>
     </div>
   </section>

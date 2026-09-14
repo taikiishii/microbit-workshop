@@ -1,11 +1,11 @@
 ---
-id: b5
+id: b7
 slug: radio
 section: 基礎編
 emoji: 📡
-num: 5
+num: 7
 color: c5
-nav_title: ⑤ 無線で通信しよう
+nav_title: ⑦ 無線で通信しよう
 card_title: 無線で通信しよう
 desc: 2台以上のマイクロビットで、電波を使ってメッセージを送り合おう。
 ---
