@@ -7,7 +7,8 @@
 
 [site]
 name         = "マイクロビット 体験ワークショップ"
-header       = "🤖 マイクロビット 体験ワークショップ"
+header       = "マイクロビット 体験ワークショップ"
+logo         = "board.png"               # 見出しの頭に出すボードの絵（assets/board.png）
 base_url     = "https://taikiishii.github.io/microbit-workshop/"
 title_suffix = " — マイクロビットワークショップ"
 
@@ -43,7 +44,7 @@ r3 = "#e5645a"
 
 # ---- もくじのセクション ---------------------------------------------------
 # 並べた順に表示される。name は frontmatter の section: と一致させる。
-# 章フォルダ名の頭： b=基礎編 / a=応用編 / e=拡張編 / mq=ロボットカー編 / c=コーディング編
+# 章フォルダ名の頭： b=基礎編 / a=応用編 / e=拡張編 / ai=AI編 / mq=ロボットカー編 / c=コーディング編
 [[sections]]
 name  = "基礎編"
 cls   = "s-basic"
@@ -64,6 +65,13 @@ cls   = "s-ext"
 title = "🔌 拡張編"
 sub   = "外部デバイスをつないで広げよう"
 line  = ["#c9b3e8", "#b39ddb"]
+
+[[sections]]
+name  = "AI編"
+cls   = "s-ai"
+title = "🧠 AI編"
+sub   = "マイクロビットに動きをおぼえさせよう（CreateAI）"
+line  = ["#b9e4dd", "#a8c8f0", "#c9b3e8"]
 
 [[sections]]
 name   = "ロボットカー編"

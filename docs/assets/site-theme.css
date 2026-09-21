@@ -30,5 +30,6 @@
 .s-basic .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0); }
 .s-apply .section-line{ background:linear-gradient(90deg,#9fd8f0,#c9b3e8,#f2e394); }
 .s-ext .section-line{ background:linear-gradient(90deg,#c9b3e8,#b39ddb); }
+.s-ai .section-line{ background:linear-gradient(90deg,#b9e4dd,#a8c8f0,#c9b3e8); }
 .s-robot .section-line{ background:linear-gradient(90deg,#a7e3a7,#ffcf5c,#ff8a80); }
 .s-code .section-line{ background:linear-gradient(90deg,#ffe066,#a8b6ff,#7ad3c8); }

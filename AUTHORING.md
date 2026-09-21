@@ -10,7 +10,7 @@
 
 ## 章フォルダ名とセクション
 
-章フォルダ名の頭は **b=基礎編 / a=応用編 / e=拡張編 / mq=ロボットカー編 / c=コーディング編**
+章フォルダ名の頭は **b=基礎編 / a=応用編 / e=拡張編 / ai=AI編 / mq=ロボットカー編 / c=コーディング編**
 ＋ 連番（例：`b6_mic`, `a1_counter`, `e3_servo`, `mq4_remote`, `c1_javascript`）。
 
 frontmatter の `section` に書く名前と、その中身：
@@ -18,6 +18,7 @@ frontmatter の `section` に書く名前と、その中身：
 - `基礎編` … micro:bit だけ（外部デバイスなし）
 - `応用編` … 変数・くりかえし・条件分岐（micro:bit だけ）
 - `拡張編` … 外部デバイスをつなぐ
+- `AI編` … CreateAI で動きを学習させる（micro:bit V2 が2台）
 - `ロボットカー編` … micro:Maqueen（`level` も付ける）
 - `コーディング編` … JavaScript / Python の文字のプログラム
 

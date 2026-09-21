@@ -5,7 +5,7 @@ section: 基礎編
 emoji: 📡
 num: 7
 color: c5
-nav_title: ⑦ 無線で通信しよう
+nav_title: 無線で通信しよう
 card_title: 無線で通信しよう
 desc: 2台以上のマイクロビットで、電波を使ってメッセージを送り合おう。
 ---
