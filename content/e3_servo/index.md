@@ -1,9 +1,9 @@
 ---
-id: e2
+id: e3
 slug: servo
 section: 拡張編
 emoji: 🦾
-num: 2
+num: 3
 color: c4
 nav_title: サーボモーターを動かそう
 card_title: サーボモーターを動かそう

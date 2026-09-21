@@ -11,7 +11,7 @@
 ## 章フォルダ名とセクション
 
 章フォルダ名の頭は **b=基礎編 / a=応用編 / e=拡張編 / mq=ロボットカー編 / c=コーディング編**
-＋ 連番（例：`b6_mic`, `a1_counter`, `e2_servo`, `mq4_remote`, `c1_javascript`）。
+＋ 連番（例：`b6_mic`, `a1_counter`, `e3_servo`, `mq4_remote`, `c1_javascript`）。
 
 frontmatter の `section` に書く名前と、その中身：
 
