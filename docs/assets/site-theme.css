@@ -1,0 +1,34 @@
+/* このファイルは build が site.toml から生成します。直接編集しないでください。 */
+
+:root{
+  --accent:#00a99d;
+  --accent-dark:#007c74;
+  --accent-bright:#00b5a8;
+}
+
+/* もくじカードの枠色（frontmatter の color:） */
+.c1{ --frame:#ffb3c1; }
+.c2{ --frame:#ffd98a; }
+.c3{ --frame:#a7e3a7; }
+.c4{ --frame:#9fd8f0; }
+.c5{ --frame:#c9b3e8; }
+.c6{ --frame:#f2e394; }
+.c7{ --frame:#ffc2a8; }
+.r1{ --frame:#a7e3a7; }
+.r2{ --frame:#ffcf5c; }
+.r3{ --frame:#ff8a80; }
+.j1{ --frame:#ffe066; }
+.j2{ --frame:#a8c8f0; }
+.j3{ --frame:#b9e4dd; }
+
+/* 難易度ラベルの背景色（frontmatter の level:） */
+.r1 .level{ background:#5bb85b; }
+.r2 .level{ background:#e0a324; }
+.r3 .level{ background:#e5645a; }
+
+/* もくじのセクションの区切り線 */
+.s-basic .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0); }
+.s-apply .section-line{ background:linear-gradient(90deg,#9fd8f0,#c9b3e8,#f2e394); }
+.s-ext .section-line{ background:linear-gradient(90deg,#c9b3e8,#b39ddb); }
+.s-robot .section-line{ background:linear-gradient(90deg,#a7e3a7,#ffcf5c,#ff8a80); }
+.s-code .section-line{ background:linear-gradient(90deg,#ffe066,#a8b6ff,#7ad3c8); }

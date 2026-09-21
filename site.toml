@@ -1,0 +1,101 @@
+# =========================================================================
+# site.toml  --  この教材だけのちがいを集めた設定
+#
+# 共通のしくみ（build の手順・CSS・JS・テンプレート）は workshop-kit 側にある。
+# ここに無いものを変えたくなったら、kit を直す＝ぜんぶの教材に効く、と考える。
+# =========================================================================
+
+[site]
+name         = "マイクロビット 体験ワークショップ"
+header       = "🤖 マイクロビット 体験ワークショップ"
+base_url     = "https://taikiishii.github.io/microbit-workshop/"
+title_suffix = " — マイクロビットワークショップ"
+
+accent        = "#00a99d"
+accent_dark   = "#007c74"
+accent_bright = "#00b5a8"
+
+# ---- もくじカードの枠色 ---------------------------------------------------
+# frontmatter の color: がこのキーを引く。
+#   c1〜c7 … 基礎編・応用編・拡張編
+#   r1〜r3 … ロボットカー編（難易度ラベルの色も下で決める）
+#   j1〜j3 … コーディング編（j1=JavaScript の黄, j2=Python の青, j3=よてい）
+[palette]
+c1 = "#ffb3c1"
+c2 = "#ffd98a"
+c3 = "#a7e3a7"
+c4 = "#9fd8f0"
+c5 = "#c9b3e8"
+c6 = "#f2e394"
+c7 = "#ffc2a8"
+r1 = "#a7e3a7"
+r2 = "#ffcf5c"
+r3 = "#ff8a80"
+j1 = "#ffe066"
+j2 = "#a8c8f0"
+j3 = "#b9e4dd"
+
+# 難易度ラベル（frontmatter に level: を書いた章だけ）の背景色
+[palette.level]
+r1 = "#5bb85b"
+r2 = "#e0a324"
+r3 = "#e5645a"
+
+# ---- もくじのセクション ---------------------------------------------------
+# 並べた順に表示される。name は frontmatter の section: と一致させる。
+# 章フォルダ名の頭： b=基礎編 / a=応用編 / e=拡張編 / mq=ロボットカー編 / c=コーディング編
+[[sections]]
+name  = "基礎編"
+cls   = "s-basic"
+title = "🔰 基礎編"
+sub   = "マイクロビットを使いこなそう"
+line  = ["#ffb3c1", "#ffd98a", "#a7e3a7", "#9fd8f0"]
+
+[[sections]]
+name  = "応用編"
+cls   = "s-apply"
+title = "🧩 応用編"
+sub   = "変数・くりかえし・条件分岐でプログラムの力をつけよう"
+line  = ["#9fd8f0", "#c9b3e8", "#f2e394"]
+
+[[sections]]
+name  = "拡張編"
+cls   = "s-ext"
+title = "🔌 拡張編"
+sub   = "外部デバイスをつないで広げよう"
+line  = ["#c9b3e8", "#b39ddb"]
+
+[[sections]]
+name   = "ロボットカー編"
+cls    = "s-robot"
+title  = "🚗 ロボットカー編（micro:Maqueen）"
+sub    = ""
+suffix = " — ロボットカー虎の巻"
+line   = ["#a7e3a7", "#ffcf5c", "#ff8a80"]
+
+[[sections]]
+name   = "コーディング編"
+cls    = "s-code"
+title  = "💻 コーディング編"
+sub    = "ブロックから文字のプログラム（JavaScript / Python）へ"
+suffix = " — コーディング入門"
+line   = ["#ffe066", "#a8b6ff", "#7ad3c8"]
+
+# ---- コードの色分け -------------------------------------------------------
+# micro:bit（MakeCode）でよく出てくるグループ名。コードの中で青く表示される。
+[code]
+namespaces = [
+  "basic", "input", "music", "led", "radio", "pins", "control",
+  "game", "images", "serial", "console",
+  "light", "sensors", "servos", "soundExpression",
+  "maqueen", "neopixel", "strip", "display",
+  "Math",
+]
+
+# ---- 博士の吹き出し -------------------------------------------------------
+[mascot]
+auto     = true   # 60文字未満の短い吹き出しは顔だけのアイコンにする
+full_min = 60     # >> ／ >| で個別に上書きできる
+
+[license]
+copyright = "Copyright © 2026 Taiki Ishii"
