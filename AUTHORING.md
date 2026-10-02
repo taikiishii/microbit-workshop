@@ -10,21 +10,23 @@
 
 ## 章フォルダ名とセクション
 
-章フォルダ名の頭は **b=基礎編 / a=応用編 / e=拡張編 / ai=AI編 / mq=ロボットカー編 / c=コーディング編**
-＋ 連番（例：`b6_mic`, `a1_counter`, `e3_servo`, `mq4_remote`, `c1_javascript`）。
+章フォルダ名の頭は **b=基礎編 / a=応用編 / e=拡張編 / m=モーター編 / ai=AI編 / mq=ロボットカー編 / c=コーディング編 / x=付録**
+＋ 連番（例：`b6_mic`, `a1_counter`, `e3_servo`, `m2_servo`, `mq4_remote`, `c1_javascript`）。
 
 frontmatter の `section` に書く名前と、その中身：
 
 - `基礎編` … micro:bit だけ（外部デバイスなし）
 - `応用編` … 変数・くりかえし・条件分岐（micro:bit だけ）
 - `拡張編` … 外部デバイスをつなぐ
+- `モーター編` … モーター基板（DFR0548）と自作の拡張機能 `pxt-dfmotor-ja` でモーターを動かす
 - `AI編` … CreateAI で動きを学習させる（micro:bit V2 が2台）
 - `ロボットカー編` … micro:Maqueen（`level` も付ける）
 - `コーディング編` … JavaScript / Python の文字のプログラム
+- `付録` … セットアップする大人むけの資料（Ubuntu での準備など）
 
 カードの枠色 `color` は、セクションによって使う組が違います。
 
-- 基礎編・応用編・拡張編 … `c1`〜`c7`
+- 基礎編・応用編・拡張編・モーター編 … `c1`〜`c7`
 - ロボットカー編 … `r1`〜`r3`（`level` ラベルの色もこれで決まる）
 - コーディング編 … `j1`=JavaScript の黄 / `j2`=Python の青 / `j3`=よてい
 
