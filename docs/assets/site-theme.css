@@ -1,37 +1,59 @@
 /* このファイルは build が site.toml から生成します。直接編集しないでください。 */
 
 :root{
-  --accent:#00a99d;
-  --accent-dark:#007c74;
-  --accent-bright:#00b5a8;
+  --accent:#3454d1;
+  --accent-dark:#2a43a7;
+  --accent-bright:#4f6fe0;
+}
+
+/* 共通部品の飾りの色（site.toml の [theme]） */
+:root{
+  --bg:#ecf0f1;
+  --bg-dot-1:rgba(52,84,209,.07);
+  --bg-dot-2:rgba(148,0,211,.05);
+  --rainbow:linear-gradient(90deg,#1e90ff,#d400d4,#e63022,#5c2d91,#e3008c,#00aa00,#00a4a6,#dc143c,#9400d3);
+  --cover-glow-1:rgba(52,84,209,.16);
+  --cover-glow-2:rgba(148,0,211,.12);
+  --hint-bg:#eff1fb;
+  --qr-frame:#3454d1;
+}
+
+/* 章ページのスライドの枠色（[theme] slide_frames を順にくり返す） */
+@media screen {
+  body:not(.mode-present) .slide:nth-of-type(6n+1){ --frame:#9acdff; }
+  body:not(.mode-present) .slide:nth-of-type(6n+2){ --frame:#ec8cec; }
+  body:not(.mode-present) .slide:nth-of-type(6n+3){ --frame:#f4a29c; }
+  body:not(.mode-present) .slide:nth-of-type(6n+4){ --frame:#b6a0ce; }
+  body:not(.mode-present) .slide:nth-of-type(6n+5){ --frame:#8cd98c; }
+  body:not(.mode-present) .slide:nth-of-type(6n+6){ --frame:#8cd6d7; }
 }
 
 /* もくじカードの枠色（frontmatter の color:） */
-.c1{ --frame:#ffb3c1; }
-.c2{ --frame:#ffd98a; }
-.c3{ --frame:#a7e3a7; }
-.c4{ --frame:#9fd8f0; }
-.c5{ --frame:#c9b3e8; }
-.c6{ --frame:#f2e394; }
-.c7{ --frame:#ffc2a8; }
-.r1{ --frame:#a7e3a7; }
-.r2{ --frame:#ffcf5c; }
-.r3{ --frame:#ff8a80; }
+.c1{ --frame:#f28ccb; }
+.c2{ --frame:#ffe793; }
+.c3{ --frame:#8cd98c; }
+.c4{ --frame:#9acdff; }
+.c5{ --frame:#cf8ceb; }
+.c6{ --frame:#8cd6d7; }
+.c7{ --frame:#f4a29c; }
+.r1{ --frame:#8cd98c; }
+.r2{ --frame:#ffe793; }
+.r3{ --frame:#f4a29c; }
 .j1{ --frame:#ffe066; }
 .j2{ --frame:#a8c8f0; }
 .j3{ --frame:#b9e4dd; }
 
 /* 難易度ラベルの背景色（frontmatter の level:） */
-.r1 .level{ background:#5bb85b; }
+.r1 .level{ background:#00aa00; }
 .r2 .level{ background:#e0a324; }
-.r3 .level{ background:#e5645a; }
+.r3 .level{ background:#e63022; }
 
 /* もくじのセクションの区切り線 */
-.s-basic .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0); }
-.s-apply .section-line{ background:linear-gradient(90deg,#9fd8f0,#c9b3e8,#f2e394); }
-.s-ext .section-line{ background:linear-gradient(90deg,#c9b3e8,#b39ddb); }
-.s-motor .section-line{ background:linear-gradient(90deg,#ffb3c1,#ffd98a,#a7e3a7,#9fd8f0); }
-.s-ai .section-line{ background:linear-gradient(90deg,#b9e4dd,#a8c8f0,#c9b3e8); }
-.s-robot .section-line{ background:linear-gradient(90deg,#a7e3a7,#ffcf5c,#ff8a80); }
+.s-basic .section-line{ background:linear-gradient(90deg,#1e90ff,#d400d4,#e63022,#5c2d91); }
+.s-apply .section-line{ background:linear-gradient(90deg,#00aa00,#00a4a6,#dc143c); }
+.s-ext .section-line{ background:linear-gradient(90deg,#9400d3,#d400d4); }
+.s-motor .section-line{ background:linear-gradient(90deg,#e63022,#ffd43b,#00aa00,#1e90ff); }
+.s-ai .section-line{ background:linear-gradient(90deg,#00a4a6,#1e90ff,#5c2d91); }
+.s-robot .section-line{ background:linear-gradient(90deg,#00aa00,#ffd43b,#e63022); }
 .s-code .section-line{ background:linear-gradient(90deg,#ffe066,#a8b6ff,#7ad3c8); }
 .s-appendix .section-line{ background:linear-gradient(90deg,#cfd8dc,#b0bec5); }

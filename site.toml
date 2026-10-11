@@ -12,35 +12,48 @@ logo         = "board.png"               # 見出しの頭に出すボードの�
 base_url     = "https://taikiishii.github.io/microbit-workshop/"
 title_suffix = " — マイクロビットワークショップ"
 
-accent        = "#00a99d"
-accent_dark   = "#007c74"
-accent_bright = "#00b5a8"
+# MakeCode for micro:bit の画面に合わせた配色（上のバーの青 #3454d1）
+accent        = "#3454d1"
+accent_dark   = "#2a43a7"
+accent_bright = "#4f6fe0"
+
+# ---- 共通部品の飾りの色 ---------------------------------------------------
+# MakeCode のブロック分類の色（基本・入力・音楽・LED・無線・ループ・論理・変数・計算）から作った。
+[theme]
+bg           = "#ecf0f1"                     # MakeCode の作業エリアの灰色
+bg_dots      = ["rgba(52,84,209,.07)", "rgba(148,0,211,.05)"]
+rainbow      = ["#1e90ff", "#d400d4", "#e63022", "#5c2d91", "#e3008c", "#00aa00", "#00a4a6", "#dc143c", "#9400d3"]
+slide_frames = ["#9acdff", "#ec8cec", "#f4a29c", "#b6a0ce", "#8cd98c", "#8cd6d7"]
+cover_glow   = ["rgba(52,84,209,.16)", "rgba(148,0,211,.12)"]
+hint_bg      = "#eff1fb"                     # 保存ボタンのうすい青
+qr_frame     = "#3454d1"
 
 # ---- もくじカードの枠色 ---------------------------------------------------
 # frontmatter の color: がこのキーを引く。
 #   c1〜c7 … 基礎編・応用編・拡張編・モーター編
 #   r1〜r3 … ロボットカー編（難易度ラベルの色も下で決める）
 #   j1〜j3 … コーディング編（j1=JavaScript の黄, j2=Python の青, j3=よてい）
+# MakeCode のブロック分類の色をうすくしたもの（カードの番号の文字が読める明るさ）
 [palette]
-c1 = "#ffb3c1"
-c2 = "#ffd98a"
-c3 = "#a7e3a7"
-c4 = "#9fd8f0"
-c5 = "#c9b3e8"
-c6 = "#f2e394"
-c7 = "#ffc2a8"
-r1 = "#a7e3a7"
-r2 = "#ffcf5c"
-r3 = "#ff8a80"
+c1 = "#f28ccb"   # 無線のピンク
+c2 = "#ffe793"   # micro:bit の黄
+c3 = "#8cd98c"   # ループの緑
+c4 = "#9acdff"   # 基本の青
+c5 = "#cf8ceb"   # 計算の紫
+c6 = "#8cd6d7"   # 論理の青緑
+c7 = "#f4a29c"   # 音楽の赤
+r1 = "#8cd98c"
+r2 = "#ffe793"
+r3 = "#f4a29c"
 j1 = "#ffe066"
 j2 = "#a8c8f0"
 j3 = "#b9e4dd"
 
 # 難易度ラベル（frontmatter に level: を書いた章だけ）の背景色
 [palette.level]
-r1 = "#5bb85b"
+r1 = "#00aa00"
 r2 = "#e0a324"
-r3 = "#e5645a"
+r3 = "#e63022"
 
 # ---- もくじのセクション ---------------------------------------------------
 # 並べた順に表示される。name は frontmatter の section: と一致させる。
@@ -50,35 +63,35 @@ name  = "基礎編"
 cls   = "s-basic"
 title = "🔰 基礎編"
 sub   = "マイクロビットを使いこなそう"
-line  = ["#ffb3c1", "#ffd98a", "#a7e3a7", "#9fd8f0"]
+line  = ["#1e90ff", "#d400d4", "#e63022", "#5c2d91"]
 
 [[sections]]
 name  = "応用編"
 cls   = "s-apply"
 title = "🧩 応用編"
 sub   = "変数・くりかえし・条件分岐でプログラムの力をつけよう"
-line  = ["#9fd8f0", "#c9b3e8", "#f2e394"]
+line  = ["#00aa00", "#00a4a6", "#dc143c"]
 
 [[sections]]
 name  = "拡張編"
 cls   = "s-ext"
 title = "🔌 拡張編"
 sub   = "外部デバイスをつないで広げよう"
-line  = ["#c9b3e8", "#b39ddb"]
+line  = ["#9400d3", "#d400d4"]
 
 [[sections]]
 name  = "モーター編"
 cls   = "s-motor"
 title = "⚙️ モーター編"
 sub   = "モーター基板で3種類のモーターを動かそう"
-line  = ["#ffb3c1", "#ffd98a", "#a7e3a7", "#9fd8f0"]
+line  = ["#e63022", "#ffd43b", "#00aa00", "#1e90ff"]
 
 [[sections]]
 name  = "AI編"
 cls   = "s-ai"
 title = "🧠 AI編"
 sub   = "マイクロビットに動きをおぼえさせよう（CreateAI）"
-line  = ["#b9e4dd", "#a8c8f0", "#c9b3e8"]
+line  = ["#00a4a6", "#1e90ff", "#5c2d91"]
 
 [[sections]]
 name   = "ロボットカー編"
@@ -86,7 +99,7 @@ cls    = "s-robot"
 title  = "🚗 ロボットカー編（micro:Maqueen）"
 sub    = ""
 suffix = " — ロボットカー虎の巻"
-line   = ["#a7e3a7", "#ffcf5c", "#ff8a80"]
+line   = ["#00aa00", "#ffd43b", "#e63022"]
 
 [[sections]]
 name   = "コーディング編"
