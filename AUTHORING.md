@@ -22,7 +22,7 @@ frontmatter の `section` に書く名前と、その中身：
 - `AI編` … CreateAI で動きを学習させる（micro:bit V2 が2台）
 - `ロボットカー編` … micro:Maqueen（`level` も付ける）
 - `コーディング編` … JavaScript / Python の文字のプログラム
-- `付録` … セットアップする大人むけの資料（Ubuntu での準備など）
+- `付録` … セットアップする大人むけの資料（Ubuntu での準備など）・アンケート（印刷用。**付録の最後**）
 
 カードの枠色 `color` は、セクションによって使う組が違います。
 
